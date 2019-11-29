@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "68293784c0984093a1f59948fadf6988.vfs.cloud9.us-east-1.amazonaws.com",
-    "project-deployed.herokuapp.com"]
+    "furlong-milestone.herokuapp.com"]
 
 
 # Application definition
