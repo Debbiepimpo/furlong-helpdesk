@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Hour details {% endblock %} {% block content %}
+
+<!--   Bootswatch panels to display hour detail   -->
+
+<section class="container detail-padding">
+  <div class="card mb-3">
+    <h3 class="card-header">{{hour.name}}</h3>
+    <div class="card-body">
+      <p class="card-text">{{hour.description }}</p>
+      <h6 class="card-subtitle text-muted">Author: {{ hour.author }} </h6>
+    </div>
+    <div class="card-footer text-muted">
+      <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
+      <a href="{% url 'upvote_hour' hour.id %}" aria-label="upvote"> <i class="fas fa-arrow-up"> {{hour.upvotes}} </i></a> {% csrf_token %} {% else %}
+      <i class="fas fa-arrow-up"> {{hour.upvotes}} </i> {% endif %}
+      <a class="btn btn btn-color buttons-right" href="{% url 'view_hours'%}" role="button">Back</a>
+    </div>
+  </div>
+</section>
+
+<!--   Comment box   -->
+
+<div class="container">
+  {% if comments %}
+  <div class="row comments">
+    <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
+  </div>
+  <div class="card">
+    {% for comment in comments %}
+    <div class="card-body detail-body">
+      <h5 class="card-title">User: {{ comment.author }}</h5>
+      <div class="dropdown-divider"></div>
+      <p class="card-text"> {{ comment.comment }} </p>
+      {% if user == comment.author %}
+
+      <div class="btn-group buttons-right">
+        <button type="button" class="btn btn-sm btn-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Options<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a class="" href="{% url 'edit_hour_comments' comment.id %}" role="button">Edit</a></li>
+          <li><a class="" href="{% url 'delete_hour_comment' comment.id %}" role="button">Delete</a></li>
+        </ul>
+      </div>
+
+      {% else %} {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!--   Comment submission form   -->
+  <div class="detail-padding">
+    {% if user.is_authenticated %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ form | as_bootstrap }}
+      <button type="submit" class="btn btn btn-color">Add comment</button>
+    </form>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> to comment on hours.</p>
+    {% endif %}
+  </div>
+</div>
+<br> {% endblock %}

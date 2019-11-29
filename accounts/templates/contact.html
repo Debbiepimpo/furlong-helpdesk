@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Contact Page {% endblock %} {% block content %}
+
+<section class="parallax parallax-contact">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-contact"> <br >Contact us.</h1>
+        </div>
+    </div>
+</section>
+
+<main class="container detail-padding">
+        <h1>Contact Us</h1>
+        <!--   Contact form   -->
+        <form method="POST">
+                {% csrf_token %} {{ contact_form | as_bootstrap }}
+                <button type="submit" class="btn btn-color" aria-label="Submit">Submit</button>
+                <br>
+                <br>
+        </form>
+</main>
+{% endblock %}

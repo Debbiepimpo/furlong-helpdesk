@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block page_title %} Packages of Professional Services already bought {% endblock %} {% block content %} {% load bootstrap_tags %}
+
+<!--   Main page image   -->
+
+<section class="parallax parallax-ProfessionalServices">
+  <div class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-professionalServices">Packages of Professional Services already bought.</h1>
+    </div>
+  </div>
+</section>
+
+<!--   Navigation to submit a Professional Service or back to all Professional Services  -->
+
+<section class="container">
+  <div class="row">
+    <div class="profile-submit-buttons col-sm-6 center">
+      <a href="{% url 'new_ProfService' %}"><button type="button" class="btn btn-color"> Request an hour of Professional Services</button></a>
+    </div>
+    <div class="profile-submit-buttons col-sm-6 center">
+      <a href="{% url 'view_ProfessionalServices' %}"><button type="button" class="btn btn-color"> Back to Professional Services</button></a>
+    </div>
+  </div>
+
+  <!--   Bootswatch cards to display Professional Services  -->
+
+  {% for ProfService in ProfessionalServices %}
+  <div class="card mb-3">
+    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ProfService.description }}</p>
+      <h6 class="card-subtitle text-muted">Author: {{ ProfService.author }} </h6>
+    </div>
+    <div class="card-footer text-muted">
+      <i class="far fa-eye"> {{ ProfService.views }} </i> {% if user.is_authenticated %}
+      <a href="{% url 'add_to_cart' ProfService.id %}" data-toggle="modal" data-target="#exampleModal" aria-label="upvote"> <i class="fas fa-arrow-up"> {{ ProfService.upvotes }} </i></a> {% csrf_token %}
+      <a href="{% url 'ProfService_detail' ProfService.id %}" aria-label="comments"><i class="far fa-comment"> ({{ ProfService.comment_number }}) </i></a> {% else %}
+      <i class="fas fa-arrow-up"> {{ProfService.upvotes}} </i>
+      <i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> {% endif %}
+      <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
+    </div>
+  </div>
+
+  <!--   Bootstrap modal with upvote information   -->
+
+  <div class="modal" id="exampleModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Professional Service: {{ProfService.name|truncatewords:"4"}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Thank you for chosing to upvote this Professional Service.</p>
+          <p> Each Professional Service you upvote comes with a £5 charge.</p>
+          <p> If you wish to continue click the upvote button.</p>
+          <p>The Professional Service will then be added to your cart where you can checkout at your convenience.</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a href="{% url 'add_to_cart' ProfService.id %}"><button type="button" class="btn btn-color">Upvote</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+  <!--   Pagination to display 5 Professional Services packages per page   -->
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if ProfessionalServices.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ ProfessionalServices.number }} of {{ ProfessionalServices.paginator.num_pages }}.
+        </span> {% if ProfessionalServices.has_next %}
+    <a href="?page={{ ProfessionalServices.next_page_number }}">next</a>
+    <a href="?page={{ ProfessionalServices.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+  </div>
+
+</section>
+
+<br> {% endblock %}

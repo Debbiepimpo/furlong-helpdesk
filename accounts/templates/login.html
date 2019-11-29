@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_heading %} User Login {% endblock %} {% block content %}
+
+
+<section class="parallax parallax-login">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-login"> <br >Login.</h1>
+        </div>
+    </div>
+</section>
+
+<main class="container input-forms">
+    <h1>Login Page</h1>
+    <!--   Login form   -->
+    <form method="POST">
+        {% csrf_token %} {{ login_form | as_bootstrap }}
+        <button type="submit" class="btn btn-color" aria-label="login">Login</button>
+    </form>
+    <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+    <p>If you do not have an account, you can <a href="{% url 'registration' %}">register</a></p>
+</main>
+{% endblock %}

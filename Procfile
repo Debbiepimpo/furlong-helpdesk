@@ -1,0 +1,1 @@
+web: gunicorn furlong.wsgi:application

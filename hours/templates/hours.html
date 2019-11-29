@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Hours {% endblock %} {% block content %}
+
+<!--   Main page image   -->
+
+<section class="parallax parallax-hours">
+  <div class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-4">Manage the available hours you have.</h1>
+    </div>
+  </div>
+</section>
+
+<!--   Navigation to submit a hour or view completed hours   -->
+
+<section class="container">
+  <div class="row">
+    <div class="profile-submit-buttons col-sm-6 center">
+      <a href="{% url 'new_hour' %}"><button type="button" class="btn btn-color"> Submit Hour</button></a>
+    </div>
+    <div class="profile-complete-button col-sm-6 center">
+      <a href="{% url 'view_completed_hours' %}"><button type="button" class="btn btn-color"> Completed Hours</button></a>
+    </div>
+  </div>
+
+  <!--   Bootswatch cards to display hours  -->
+
+  {% for hour in hours %}
+  <div class="card mb-3">
+    <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
+    <div class="progress">
+      {% if hour.status == "To do" %}
+      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+      {% else %}
+      <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{hour.description}}</p>
+      <h6 class="card-subtitle text-muted">Author: {{ hour.author }} </h6>
+    </div>
+    <div class="card-footer text-muted">
+      <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
+      <a href="{% url 'upvote_hour' hour.id %}" aria-label="upvote"> <i class="fas fa-arrow-up"> {{hour.upvotes}} </i></a> {% csrf_token %}
+      <a href="{% url 'hour_detail' hour.id %}" aria-label="comments"><i class="far fa-comment"> ({{ hour.comment_number }}) </i></a> {% else %}
+      <i class="fas fa-arrow-up"> {{hour.upvotes}} </i>
+      <i class="far fa-comment"> ({{ hour.comment_number }}) </i> {% endif %}
+      <a class="btn btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!--   Pagination to display 5 hours per page   -->
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if hours.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ hours.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ hours.number }} of {{ hours.paginator.num_pages }}.
+        </span> {% if hours.has_next %}
+    <a href="?page={{ hours.next_page_number }}">next</a>
+    <a href="?page={{ hours.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+  </div>
+
+</section>
+
+<br> {% endblock %}

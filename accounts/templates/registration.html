@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Registration Page {% endblock %} {% block content %}
+
+<section class="parallax parallax-signUp">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-signUp"> <br >Sign up.</h1>
+        </div>
+    </div>
+</section>
+
+<main class="container input-forms">
+    <!--   Reistration form   -->
+    <h1>Register Page</h1>
+    <form method="POST">
+        {% csrf_token %} {{ registration_form | as_bootstrap }}
+        <button type="submit" class="btn btn-color">Register</button>
+    </form>
+    <p>If you already have an account, you can <a href="{% url 'login' %}">sign in</a></p>
+</main>
+{% endblock %}

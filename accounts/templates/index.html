@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {% block page_title %} Furlong Solutions {% endblock %} {% block content %}
+<!--   head image   -->
+<section class="parallax parallax-index">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <img src="/static/img/furlong-logo.png" alt=""></img>
+            </br>
+            {% if user.is_authenticated %} {% else %}
+            <a class="btn btn-color-fs btn-lg" href="{% url 'registration' %}" role="button" aria-label="Register">Register</a> {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    
+     <div class="center index-title">
+        <h1 class="display-title">Furlong Solutions provides support and help with your platform.</h1>
+    </div>
+
+    <!--   Main menu icons   -->
+
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col-sm-6 col-md-3">
+                <div class="index-icon">
+                    <a href="{% url 'view_ProfessionalServices' %}" aria-label="ProfessionalServices"> <i class="fas fa-headset"></i></a>
+                </div>
+                <div class="index-sub-header">
+                    <strong class="display-title">Profesional services.</strong>
+                </div>
+                <div class="index-sub-text display-title">
+                    If you need support take the package fitts your needs.</br><small class="text-muted">This services are chargable<a href="" class="additional-info" data-toggle="modal" data-target="#exampleModal">*</a></small>.
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="index-icon">
+                    <a href="{% url 'view_hours' %}" aria-label="hours"> <i class="fas fa-clock"></i></a>
+                </div>
+                <div class="index-sub-header">
+                    <strong class="display-title">Available hours</strong>
+                </div>
+                <div class="index-sub-text display-title">
+                    Manage the available hours you have.
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="index-icon">
+                    <a href="{% url 'progress' %}" aria-label="progress"> <i class="fas fa-chart-pie"></i></a>
+                </div>
+                <div class="index-sub-header">
+                    <strong class="display-title">Progress</strong>
+                </div>
+                <div class="index-sub-text display-title">
+                    Check the progress of your enquiries.
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="index-icon">
+                    <a href="{% url 'contact' %}" aria-label="hours"> <i class="fas fa-envelope-open-text"></i></a>
+                </div>
+                <div class="index-sub-header">
+                    <strong class="display-title">Contact us</strong>
+                </div>
+                <div class="index-sub-text display-title">
+                    If you have any enquiry please, contact us.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <div class="center index-title">
+        <h1 class="display-title"> Take control of the support we provide. </h1>
+    </div>
+    
+    <div class="center bottom-padding display-title">
+        <p> At Furlong solutions make a compromise with our clients and spend our time working on developing the platform personalize for them.
+            <br>
+        </p>
+        <p>
+            Register to start having control of support time available and/or get additional support time.
+            <br>
+        </p>
+        <p>
+            Once registered you could manage all the support we've been provided, we are providing and we'll provide.
+        </p>
+    </div>
+
+    <!--   Register button   -->
+
+    <div class="container center">
+        <div class="bottom-register">
+            {% if user.is_authenticated %} {% else %}
+            <a class="btn btn-color-fs btn-lg" href="{% url 'registration' %}" role="button" aria-label="register">Register</a> {% endif %}
+        </div>
+
+    </div>
+
+    <!--   Bootstrap Modal   -->
+
+    <div class="modal" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Packages on this section are chargeable.</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p> This packages are individually priced</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

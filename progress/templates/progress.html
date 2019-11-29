@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block page_title %} Statistics {% endblock %} {% block content %}
+
+<!--   Main page image   -->
+
+<section class="parallax parallax-progress">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-progress">See whats happening <br> with the hours you buy.</h1>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div>
+        <!--   Top upvoted hours and Professional Service bar charts   -->
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Five Most Upvoted Hours</h2>
+                {{ hour_bar_chart|safe }}
+            </div>
+            <div class="col-md-6">
+                <h2>Five Most Upvoted Professional Services</h2>
+                {{ ProfService_bar_chart|safe }}
+            </div>
+        </div>
+        <!--   Hours and Professional Service progress pie charts   -->
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Hours Progress</h2>
+                {{ hour_pie_chart|safe }}
+            </div>
+            <div class="col-md-6">
+                <h2>Profesional Services Progress</h2>
+                {{ ProfService_pie_chart|safe }}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

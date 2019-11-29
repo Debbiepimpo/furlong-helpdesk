@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block title %} Add Comment{% endblock %} {% block content %}
+<br>
+<div class="container detail-padding">
+    <h3> Edit Comment</h3>
+    <!--   Edit comment form   -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ form | as_bootstrap }}
+        <button type="submit" class="btn btn-color">Submit</button>
+        <button class="bnt btn-default" onclick="history.go(-1)">Cancel</button>
+    </form>
+</div>
+{% endblock %}

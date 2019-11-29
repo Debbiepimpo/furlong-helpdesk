@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock %}{% block content %}
+
+<section class="container detail-padding">
+    <div class="row">
+        <div class="profile-submit-buttons">
+            <h1>Check Out:</h1>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="paymentGuide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Test payment info</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please use the below information to test payment</p>
+                    <ol>
+                        <li>Card number: 4242424242424242</li>
+                        <li>CVC number: Any 3 digit number</li>
+                        <li>expiry date: Any date in the future</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-color" data-dismiss="modal">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--   Displays Professional Services about to be purchased   -->
+
+    {% if cart_items %}
+    <table class="table table-hover">
+        <thead class="table-active">
+            <tr>
+                <th scope="col">Professional Service Name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr class="">
+                <th scope="row">{{ item.ProfService.name }}</th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            <tr class="table-dark">
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td>Total: £{{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% else %}
+    <div class="card mb-3">
+        <h3 class="card-header">Looks like your cart is empty!</h3>
+    </div>
+    {% endif %}
+
+    <!--   Payment form   -->
+
+    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}" onsubmit="submit_payment_btn.disabled = true;">
+        <legend>Payment Details</legend>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                {{ order_form | as_bootstrap }}
+            </div>
+
+            <div class="form-group col-md-6" id="form-reset">
+                {{ payment_form | as_bootstrap }} {% csrf_token %}
+                <div class="form-group col-md-12">
+                    {% if cart_items %}
+                    <div>
+                        <div id="credit-card-errors" style="display:none">
+                            <div id="stripe-error-message"></div>
+                        </div>
+                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment" aria-label="Submit">
+                        <input class="reset-button" type="button" value="⟲" name="resetForm" id="payment-reset" aria-label="reset">{% else %}
+                        <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</section>
+{% endblock %}

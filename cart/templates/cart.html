@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block page_title %} Cart {% endblock %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block content %}
+<section class="container detail-padding">
+    <div class="profile-submit-buttons">
+        <h1> Cart: </h1>
+    </div>
+
+    <!--  Displays Professional Services in cart   -->
+
+    <div class="row">
+        {% if cart_items %} {% for item in cart_items %}
+        <div class="col-md-4">
+            <div class="card mb-3 cart-item-height">
+                <h3 class="card-header">{{ item.ProfService.name|truncatechars:30 }}</h3>
+                <div class="card-body">
+                    <p class="card-text">{{ item.ProfService.description }}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ item.ProfService.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ item.ProfService.views }} </i>
+                    <form method="post" action="{% url 'adjust_cart' item.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit"><span>Delete</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="card mb-3">
+            <h3 class="card-header">Looks like your cart is empty!</h3>
+        </div>
+        {% endif %}
+    </div>
+    <div class="total">
+        <h2>Total: £{{ total }}</h2>
+    </div>
+    <div class="checkout-button">
+        {% if total == 0 %}
+        <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% else %}
+        <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a> {% endif %}
+    </div>
+
+</section>
+
+{% endblock %}
