@@ -15,8 +15,8 @@ def do_search(request):
         name__icontains=request.GET['q']).exclude(
         status='Cancelled').exclude(
             status="Current Unavailable")
-    hours = hours.order_by("-upvotes")
-    ProfessionalServices = ProfessionalServices.order_by("-upvotes")
+    hours = hours.order_by("-purchases")
+    ProfessionalServices = ProfessionalServices.order_by("-purchases")
     total = hours.count() + ProfessionalServices.count()
     return render(request,
                   "search.html",

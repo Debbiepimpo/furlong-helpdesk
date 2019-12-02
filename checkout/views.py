@@ -13,7 +13,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
-    """View to handle customer payment and upvote Professional Service"""
+    """View to handle customer payment and purchase Professional Service"""
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
@@ -53,12 +53,12 @@ def checkout(request):
                     request,
                     "You have successfully paid",
                     extra_tags="alert-success")
-                upvote_list = []
+                purchase_list = []
                 for id, quantity in cart.items():
-                    upvote_list.append(id)
-                for id in upvote_list:
+                    purchase_list.append(id)
+                for id in purchase_list:
                     ProfService = get_object_or_404(PServices, pk=id)
-                    ProfService.upvotes += 1
+                    ProfService.purchases += 1
                     ProfService.save()
                 request.session['cart'] = {}
                 return redirect(reverse('view_ProfessionalServices'))

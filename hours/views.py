@@ -97,7 +97,7 @@ def hour_detail(request, pk):
 
 
 @login_required()
-def upvote_hour(request, pk):
+def purchase_hour(request, pk):
     """
     Stops user voting multiple times if they have already.
     """
@@ -105,10 +105,10 @@ def upvote_hour(request, pk):
     if HourUpvote.objects.filter(user=request.user, hour=hour):
         messages.error(
             request,
-            "You have upvoted this hour already!",
+            "You have purchased this hour already!",
             extra_tags="alert-danger")
     else:
-        hour.upvotes += 1
+        hour.purchases += 1
         hour.save()
         HourUpvote.objects.create(user=request.user, hour=hour)
         messages.success(

@@ -7,7 +7,7 @@ class Hour(models.Model):
     """Hour model"""
     name = models.CharField(max_length=75, blank=False)
     description = models.TextField(max_length=500, blank=False)
-    upvotes = models.IntegerField(default=0)
+    purchases = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     author = models.ForeignKey(
         User,
@@ -44,7 +44,7 @@ class HourComment(models.Model):
 
 
 class HourUpvote(models.Model):
-    """ Model to upvote a hour """
+    """ Model to purchase a hour """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hour = models.ForeignKey(Hour, on_delete=models.CASCADE)
 

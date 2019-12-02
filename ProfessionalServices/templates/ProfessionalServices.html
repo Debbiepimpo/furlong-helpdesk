@@ -64,9 +64,9 @@ $(function() {
     <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
     <div class="progress">
       {% if ProfService.status == "Available" %}
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+      <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
       {% else %}
-      <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+      <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
       {% endif %}
     </div>
     <div class="card-body">
@@ -75,9 +75,9 @@ $(function() {
     </div>
     <div class="card-footer text-muted">
       {% if user.is_authenticated %}
-      <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="upvote"> <i class="fas fa-arrow-up"> {{ ProfService.upvotes }} </i></a> {% csrf_token %}
+      <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{ ProfService.purchases }} </i></a> {% csrf_token %}
       {% else %}
-      <i class="fas fa-arrow-up"> {{ProfService.upvotes}} </i> {% endif %}
+      <img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{ProfService.purchases}} </i> {% endif %}
       <a class="btn btn-color-fs buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
     </div>
   </div>

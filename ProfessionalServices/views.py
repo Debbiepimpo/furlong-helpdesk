@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import PServices, PServices_Bought
-from .forms import CreatePServicesForm
+from .forms import CreatePServicesForm, PServicesCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 users = []
@@ -50,7 +50,48 @@ def ProfService_detail(request, pk):
     to the ProfService.
     """
     ProfService = get_object_or_404(PServices, pk=pk)
+    if request.method == "POST":
 
+        form = PServicesCommentForm(request.POST)
+
+        if form.is_valid():
+            ProfServiceComment = form.save(commit=False)
+            ProfServiceComment.ProfService = ProfService
+            ProfServiceComment.author = request.user
+            ProfService.comment_number += 1
+            ProfService.save()
+            ProfServiceComment.save()
+            return redirect(reverse('ProfService_detail', kwargs={'pk': pk}))
+        else:
+            messages.error(
+                request,
+                "Looks like your comment is empty!",
+                extra_tags="alert-danger")
+            form = PServicesCommentForm(instance=ProfService)
+            return redirect(reverse('ProfService_detail', kwargs={'pk': pk}))
+
+    else:
+        form = PServicesCommentForm()
+        comments = PServices_Bought.objects.filter(ProfService__pk=ProfService.pk)
+        comments_total = len(comments)
+        response = render(request,
+                          'ProfService_detail.html',
+                          {'ProfService': ProfService,
+                           'comments': comments,
+                           'comments_total': comments_total,
+                           'form': form})
+        if request.session.get('ProfService'):
+            ProfServiceId = request.session.get('ProfService')
+
+            if ProfServiceId != ProfService.pk:
+                request.session['ProfService'] = ProfService.pk
+                ProfService.views += 1
+                ProfService.save()
+        else:
+            request.session['ProfService'] = ProfService.pk
+            ProfService.views += 1
+            ProfService.save()
+        return response
 
 
 @login_required

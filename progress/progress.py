@@ -16,9 +16,9 @@ custom_style = Style(
 
 
 def hour_bar_chart():
-    """A bar chart showing the 5 most upvoted hours in descending order"""
+    """A bar chart showing the 5 most purchased hours in descending order"""
 
-    hours = Hour.objects.order_by('-upvotes')[:5]
+    hours = Hour.objects.order_by('-purchases')[:5]
     bar_chart = pygal.Bar(
         show_minor_y_labels=False,
         print_values=True,
@@ -27,7 +27,7 @@ def hour_bar_chart():
     )
 
     for hour in hours:
-        bar_chart.add(hour.name, hour.upvotes)
+        bar_chart.add(hour.name, hour.purchases)
 
     return bar_chart.render()
 
@@ -40,9 +40,9 @@ def HourBarChart():
 
 
 def ProfService_bar_chart():
-    """A bar chart showing the 5 most upvoted Professional Services in descending order"""
+    """A bar chart showing the 5 most purchased Professional Services in descending order"""
 
-    ProfessionalServices = PServices.objects.order_by('-upvotes')[:5]
+    ProfessionalServices = PServices.objects.order_by('-purchases')[:5]
     bar_chart = pygal.Bar(
         show_minor_y_labels=False,
         print_values=True,
@@ -51,7 +51,7 @@ def ProfService_bar_chart():
     )
 
     for ProfService in ProfessionalServices:
-        bar_chart.add(ProfService.name, ProfService.upvotes)
+        bar_chart.add(ProfService.name, ProfService.purchases)
 
     return bar_chart.render()
 
