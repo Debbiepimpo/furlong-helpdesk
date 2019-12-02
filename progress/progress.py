@@ -66,9 +66,9 @@ def PServicesBarChart():
 def hour_pie_chart():
     """A pie chart showing the status of hours"""
 
-    todo = Hour.objects.filter(status='To do').count()
+    todo = Hour.objects.filter(status='Available').count()
     inprogress = Hour.objects.filter(status='In progress').count()
-    done = Hour.objects.filter(status='Done').count()
+    done = Hour.objects.filter(status='Current Unavailable').count()
     cancelled = Hour.objects.filter(status='Cancelled').count()
     p_chart = pygal.Pie(
         print_values=True,
@@ -77,7 +77,7 @@ def hour_pie_chart():
 
     p_chart.add('To Do', todo)
     p_chart.add('In Progress', inprogress)
-    p_chart.add('Done', done)
+    p_chart.add('Current Unavailable', done)
     p_chart.add('Cancelled', cancelled)
     return p_chart.render()
 
@@ -92,9 +92,9 @@ def HourPieChart():
 def ProfService_pie_chart():
     """A pie chart showing the status of Professional Services"""
 
-    todo = PServices.objects.filter(status='To do').count()
+    todo = PServices.objects.filter(status='Available').count()
     inprogress = PServices.objects.filter(status='In progress').count()
-    done = PServices.objects.filter(status='Done').count()
+    done = PServices.objects.filter(status='Current Unavailable').count()
     cancelled = PServices.objects.filter(status='Cancelled').count()
     p_chart = pygal.Pie(
         print_values=True,
@@ -103,7 +103,7 @@ def ProfService_pie_chart():
 
     p_chart.add('To Do', todo)
     p_chart.add('In Progress', inprogress)
-    p_chart.add('Done', done)
+    p_chart.add('Current Unavailable', done)
     p_chart.add('Cancelled', cancelled)
     return p_chart.render()
 

@@ -17,15 +17,15 @@ class Hour(models.Model):
     comment_number = models.IntegerField(default=0)
 
     STATUS_CHOICES = (
-        ('To do', 'To do'),
+        ('Available', 'Available'),
         ('In progress', 'In progress'),
-        ('Done', 'Done'),
+        ('Current Unavailable', 'Current Unavailable'),
         ('Cancelled', 'Cancelled')
     )
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='To do'
+        default='Available'
     )
 
     def __str__(self):

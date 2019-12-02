@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block page_title %} PServices Detail {% endblock %} {% block content %} {% load bootstrap_tags %}
+{% extends 'base.html' %} {% block page_title %} Profesional Service package Detail {% endblock %} {% block content %} {% load bootstrap_tags %}
 
 <!--   Bootswatch panels to display Professional Service detail   -->
 
@@ -19,43 +19,4 @@
 
 </section>
 
-<!--   Comment box   -->
-
-<div class="container">
-    {% if comments %}
-    <div class="row comments">
-        <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
-    </div>
-    <div class="card">
-        {% for comment in comments %}
-        <div class="card-body detail-body">
-            <h5 class="card-title">User: {{ comment.author }}</h5>
-            <div class="dropdown-divider"></div>
-            <p class="card-text"> {{ comment.comment }} </p>
-            {% if user == comment.author %}
-            <div class="btn-group buttons-right">
-                <button type="button" class="btn btn-sm btn-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Options<span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'edit_ProfService_comments' comment.id %}" role="button">Edit</a></li>
-                    <li><a href="{% url 'delete_ProfService_comment' comment.id %}" role="button">Delete</a></li>
-                </ul>
-            </div>
-            {% else %} {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <!--   Comment submission form   -->
-    <div class="detail-padding">
-        {% if user.is_authenticated %}
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %} {{ form | as_bootstrap }}
-            <button type="submit" class="btn btn btn-color">Add comment</button>
-        </form>
-        {% else %}
-        <p>Please <a href="{% url 'login' %}">login</a> to comment on Professional Services.</p>
-        {% endif %}
-    </div>
-</div>
-<br> {% endblock %}
+{% endblock %}

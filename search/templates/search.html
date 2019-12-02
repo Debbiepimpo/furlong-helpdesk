@@ -30,7 +30,7 @@
             <div class="card mb-3">
                 <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
                 <div class="progress">
-                    {% if hour.status == "To do" %}
+                    {% if hour.status == "Available" %}
                     <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
                     {% else %}
                     <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
@@ -54,7 +54,7 @@
                 <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
-                        {% if ProfService.status == "To do" %}
+                        {% if ProfService.status == "Available" %}
                         <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
                         {% else %}
                         <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
@@ -81,7 +81,7 @@
                 <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
-                        {% if hour.status == "To do" %}
+                        {% if hour.status == "Available" %}
                         <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
                         {% else %}
                         <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
@@ -111,7 +111,7 @@
                 <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
-                        {% if ProfService.status == "To do" %}
+                        {% if ProfService.status == "Available" %}
                         <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
                         {% else %}
                         <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>

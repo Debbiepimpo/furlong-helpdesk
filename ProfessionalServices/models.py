@@ -11,18 +11,16 @@ class PServices(models.Model):
     views = models.IntegerField(default=0)
     author = models.ForeignKey(User)
     created_date = models.DateTimeField(auto_now_add=True)
-    comment_number = models.IntegerField(default=0)
+    
 
     STATUS_CHOICES = (
-        ('To do', 'To do'),
-        ('In progress', 'In progress'),
-        ('Done', 'Done'),
-        ('Cancelled', 'Cancelled')
+        ('Available', 'Available'),
+        ('Current Unavailable', 'Current Unavailable')
     )
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='To do'
+        default='Available'
     )
 
     def __str__(self):
@@ -31,7 +29,6 @@ class PServices(models.Model):
 
 class PServices_Bought(models.Model):
     """Professional Services Bought model"""
-    comment = models.TextField(max_length=256, blank=False)
     ProfService = models.ForeignKey(PServices)
     author = models.ForeignKey(User)
     created_date = models.DateTimeField(auto_now_add=True)

@@ -10,11 +10,11 @@ def do_search(request):
     hours = Hour.objects.filter(
         name__icontains=request.GET['q']).exclude(
         status='Cancelled').exclude(
-            status="Done")
+            status="Current Unavailable")
     ProfessionalServices = PServices.objects.filter(
         name__icontains=request.GET['q']).exclude(
         status='Cancelled').exclude(
-            status="Done")
+            status="Current Unavailable")
     hours = hours.order_by("-upvotes")
     ProfessionalServices = ProfessionalServices.order_by("-upvotes")
     total = hours.count() + ProfessionalServices.count()

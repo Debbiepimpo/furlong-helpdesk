@@ -11,7 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def view_hours(request):
     """View that displays all hours excluding cancelled or done status"""
     hours = Hour.objects.all().order_by(
-        '-id').exclude(status='Cancelled').exclude(status="Done")
+        '-id').exclude(status='Cancelled').exclude(status="Current Unavailable")
     paginator = Paginator(hours, 5)  # Show 5 hours per page
 
     page = request.GET.get('page')
@@ -27,7 +27,7 @@ def view_hours(request):
 
 def view_completed_hours(request):
     """View that displays completed hours"""
-    hours = Hour.objects.all().order_by('-id').filter(status='Done')
+    hours = Hour.objects.all().order_by('-id').filter(status='Current Unavailable')
 
     paginator = Paginator(hours, 5)  # Show 5 hours per page
 

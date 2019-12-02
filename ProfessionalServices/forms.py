@@ -8,9 +8,3 @@ class CreatePServicesForm(forms.ModelForm):
         model = PServices
         fields = ('name', 'description')
 
-
-class PServicesCommentForm(forms.ModelForm):
-    """Form to create ProfessionalService comments"""
-    class Meta:
-        model = PServices_Bought
-        fields = ('comment',)

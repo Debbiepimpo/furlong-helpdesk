@@ -1,4 +1,4 @@
-/*------------------------ Basic Styling ----------------------------------*/
+/*------------------------ Main styles ----------------------------------*/
 
 .center {
     text-align: center;
@@ -11,17 +11,18 @@ body {
 }
 
 a {
-     color:  #512d6d !important;
+    color: #512d6d !important;
 }
 
 a:hover {
-     color: #f6303e !important;
-     text-decoration: none;
+    color: #f6303e !important;
+    text-decoration: none;
 }
 
 footer {
-    background-color:  #d3b6ea;
+    background-color: #d3b6ea;
 }
+
 footer a {
     color: #512d6d;
 }
@@ -34,7 +35,7 @@ footer a:hover {
 .copyright-footer {
     padding-top: 15px;
     text-align: right;
-    color:  #512d6d;
+    color: #512d6d;
 }
 
 .breadcrumb {
@@ -45,7 +46,7 @@ footer a:hover {
     flex-wrap: wrap;
     margin-bottom: 0px;
     list-style: none;
-    background-color:  #d3b6ea;
+    background-color: #d3b6ea;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
@@ -58,6 +59,28 @@ footer a:hover {
     margin-right: 0px;
     margin-left: 0px;
 }
+
+/*---------------------------- Shopping bag icon ---------------------------------------*/
+
+.shopping-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.item-count {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    bottom: 12px;
+    padding: 4px 8px;
+}
+
+.shopping-icon-title {
+    width: 30px;
+    height: 40px;
+    padding-bottom: 10px;
+}
+
 
 /*---------------------------- Navbar ---------------------------------------*/
 
@@ -88,22 +111,23 @@ footer a:hover {
     -webkit-transition: all .5s ease-in-out;
 
 }
+
 /*-----------------------------Buttons---------------------------------------*/
 
 input[type="search"] {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #512d6d;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #512d6d;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .btn-colored,
 .btn-color {
     color: #512d6d;
     background-color: #f6303e;
-    border-color: #f6303e; 
+    border-color: #f6303e;
 }
 
 .btn-colored {
@@ -115,7 +139,7 @@ input[type="search"] {
 }
 
 .btn-colored:hover,
-.btn-color:hover{
+.btn-color:hover {
     color: #d3b6ea;
 }
 
@@ -142,6 +166,7 @@ input[type="search"] {
 .display-professionalServices,
 .display-signUp,
 .display-login,
+.display-ShoppingBag,
 .display-4 {
     font-size: 64px;
     font-weight: 400;
@@ -173,6 +198,10 @@ input[type="search"] {
     color: #512d6d;
 }
 
+.display-ShoppingBag {
+    color: #512d6d;
+}
+
 .main-message {
     text-align: center;
 }
@@ -187,8 +216,9 @@ input[type="search"] {
 }
 
 .parallax-index {
-     background-image: url("/static/img/kids.jpg");
+    background-image: url("/static/img/kids.jpg");
 }
+
 .parallax-hours {
     background-image: url("/static/img/hour-management.jpeg");
 }
@@ -210,6 +240,13 @@ input[type="search"] {
     background-image: url("/static/img/sign.jpg");
 }
 
+.parallax-ShoppingBag {
+    background-image: url("/static/img/shop-bag.jpg");
+}
+
+.parallax-archive {
+    background-image: url("/static/img/archive.jpeg");
+}
 
 /*------------------------ Index ----------------------------------*/
 
@@ -306,6 +343,7 @@ input[type="search"] {
 
 .mb-3 {
     margin-top: 20px;
+    border: hidden;
 }
 
 .full-height {

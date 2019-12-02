@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('views', models.IntegerField(default=0)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('comment_number', models.IntegerField(default=0)),
-                ('status', models.CharField(choices=[('To do', 'To do'), ('In progress', 'In progress'), ('Done', 'Done'), ('Cancelled', 'Cancelled')], default='To do', max_length=20)),
+                ('status', models.CharField(choices=[('Available', 'Available'), ('In progress', 'In progress'), ('Current Unavailable', 'Current Unavailable'), ('Cancelled', 'Cancelled')], default='Available', max_length=20)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
