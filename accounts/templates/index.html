@@ -3,7 +3,7 @@
 <section class="parallax parallax-index">
     <div class="container main-message">
         <div class="jumbotron">
-            <img src="/static/img/furlong-logo.png" alt=""></img>
+            <img class="furlong-slogan" src="/static/img/furlong-logo.png" alt=""></img>
             </br>
             {% if user.is_authenticated %} {% else %}
             <a class="btn btn-color-fs btn-lg" href="{% url 'registration' %}" role="button" aria-label="Register">Register</a> {% endif %}

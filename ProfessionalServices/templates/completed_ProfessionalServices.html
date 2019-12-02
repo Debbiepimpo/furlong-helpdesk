@@ -36,9 +36,9 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ ProfService.views }} </i> {% if user.is_authenticated %}
-      <a href="{% url 'add_to_cart' ProfService.id %}" data-toggle="modal" data-target="#exampleModal" aria-label="purchase"><img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{ ProfService.purchases }} </i></a> {% csrf_token %}
+      <a href="{% url 'add_to_cart' ProfService.id %}" data-toggle="modal" data-target="#exampleModal" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
       <a href="{% url 'ProfService_detail' ProfService.id %}" aria-label="comments"><i class="far fa-comment"> ({{ ProfService.comment_number }}) </i></a> {% else %}
-      <img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{ProfService.purchases}} </i>
+      <i class="fas fa-cart-plus">  Add to Cart</i>
       <i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> {% endif %}
       <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
     </div>

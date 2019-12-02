@@ -29,9 +29,9 @@
     <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
     <div class="progress">
       {% if hour.status == "Available" %}
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+      <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
       {% else %}
-      <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+      <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
       {% endif %}
     </div>
     <div class="card-body">
@@ -40,9 +40,9 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
-      <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchase"><img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{hour.purchases}} </i></a> {% csrf_token %}
+      <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
       <a href="{% url 'hour_detail' hour.id %}" aria-label="comments"><i class="far fa-comment"> ({{ hour.comment_number }}) </i></a> {% else %}
-      <img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{hour.purchases}} </i>
+      <i class="fas fa-cart-plus"> Add to Cart</i>
       <i class="far fa-comment"> ({{ hour.comment_number }}) </i> {% endif %}
       <a class="btn btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
     </div>

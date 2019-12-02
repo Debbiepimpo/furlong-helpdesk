@@ -75,7 +75,7 @@ def hour_pie_chart():
         style=custom_style,
     )
 
-    p_chart.add('To Do', todo)
+    p_chart.add(' Available', todo)
     p_chart.add('In Progress', inprogress)
     p_chart.add('Current Unavailable', done)
     p_chart.add('Cancelled', cancelled)
@@ -101,7 +101,7 @@ def ProfService_pie_chart():
         style=custom_style
     )
 
-    p_chart.add('To Do', todo)
+    p_chart.add(' Available', todo)
     p_chart.add('In Progress', inprogress)
     p_chart.add('Current Unavailable', done)
     p_chart.add('Cancelled', cancelled)

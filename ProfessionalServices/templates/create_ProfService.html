@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block page_title %} PServices Submission {% endblock %} {% block content %} {% load bootstrap_tags %}
+{% extends 'base.html' %} {% block page_title %} Profesional Services Submission {% endblock %} {% block content %} {% load bootstrap_tags %}
 <br>
 <div class="container detail-padding">
     <h3>Submit your Professional Service below</h3>
-    <!--   PServices submission form   -->
+    <!--   Professional Services submission form   -->
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form | as_bootstrap }}
         <button type="submit" class="btn btn-color">Submit</button>

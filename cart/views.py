@@ -24,7 +24,7 @@ def add_to_cart(request, id):
         request.session['cart'] = cart
         messages.success(
             request,
-            "PServices successfully added to cart",
+            "Professional Services successfully added to cart",
             extra_tags="alert-success")
     return redirect('view_ProfessionalServices')
 

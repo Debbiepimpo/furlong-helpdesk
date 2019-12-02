@@ -36,9 +36,9 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
-      <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchase"><img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{hour.purchases}} </i></a> {% csrf_token %}
+      <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
       <a href="{% url 'hour_detail' hour.id %}" aria-label="comments"><i class="far fa-comment"> ({{ hour.comment_number }}) </i></a> {% else %}
-      <img class="shopping-icon" src="../../static/img/shopping-bag.svg" /><i class="plus-inside fas fa-plus"> {{hour.purchases}} </i>
+      <i class="fas fa-cart-plus"> Add to Cart</i>
       <i class="far fa-comment"> ({{ hour.comment_number }}) </i> {% endif %}
       <a class="btn btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
     </div>
