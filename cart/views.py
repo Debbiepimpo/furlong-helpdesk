@@ -11,20 +11,23 @@ def view_cart(request):
 
 @login_required()
 def add_to_cart(request, id):
-    """Add a quantity of the specified product to the cart if not already there"""
+    """Add a quantity of the specified product to the cart if already there"""
     quantity = 1
+    
     cart = request.session.get('cart', {})
+    
     if id in cart.keys():
-        messages.error(
+       cart[id] = int(cart[id]) + quantity 
+       messages.success(
             request,
-            "This Package of Professional Service support hours is already in your cart!",
-            extra_tags="alert-danger")
+            "One more of this Professional Service pack added to cart.",
+            extra_tags="alert-success")
     else:
         cart[id] = cart.get(id, quantity)
         request.session['cart'] = cart
         messages.success(
             request,
-            "Professional Services successfully added to cart",
+            "New Professional Services pack successfully added to cart",
             extra_tags="alert-success")
     return redirect('view_ProfessionalServices')
 
@@ -33,6 +36,11 @@ def add_to_cart(request, id):
 def adjust_cart(request, id):
     """Removes item from cart"""
     cart = request.session.get('cart', {})
-    cart.pop(id)
+    
+    if cart[id]:
+        cart[id] -= 1
+    if cart[id] == 0:
+        cart.pop(id)
+    
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

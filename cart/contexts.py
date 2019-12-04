@@ -7,7 +7,6 @@ def cart_contents(request):
     Ensures that the cart contents are available when rendering
     every page
     """
-    price = 5
     cart = request.session.get('cart', {})
 
     cart_items = []
@@ -16,7 +15,7 @@ def cart_contents(request):
 
     for id, quantity in cart.items():
         ProfService = get_object_or_404(PServices, pk=id)
-        total += 5
+        total += quantity * ProfService.udPrice
         ProfService_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'ProfService': ProfService})
 
