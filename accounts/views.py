@@ -93,7 +93,7 @@ def registration(request):
             else:
                 messages.error(
                     request,
-                    "Unable to register your account at this time",
+                    "Unable to register your account at this time, please try later.",
                     extra_tags="alert-danger")
     else:
         registration_form = UserRegistrationForm()

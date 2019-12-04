@@ -13,7 +13,7 @@ $(function() {
 </script>
 {% endblock %} {% block content %} {% load bootstrap_tags %}
 
-<!--   Main page image   -->
+<!--   Main page   -->
 
 <section class="parallax parallax-ProfessionalServices">
   <div class="container main-message">
@@ -49,9 +49,9 @@ $(function() {
 <!--   Navigation to submit a Professional Service   -->
 <section class="container">
   <div class="row">
-    <div class="profile-submit-buttons col-sm-6 center">
+    <!--- <div class="profile-submit-buttons col-sm-6 center">
       <a href="{% url 'new_ProfService' %}"><button type="button" class="btn btn-color"> Submit Profesional Services</button></a>
-    </div>
+    </div> --->
     <div class="profile-complete-button col-sm-6 center">
       <a href="{% url 'view_completed_ProfessionalServices' %}"><button type="button" class="btn btn-color"> Completed Professional Services</button></a>
     </div>
@@ -61,7 +61,7 @@ $(function() {
 
   {% for ProfService in ProfessionalServices %}
   <div class="card mb-3">
-    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
+    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="fas fa-pound-sign"> {{ProfService.udPrice}}</i></span></div>
     <div class="progress">
       {% if ProfService.status == "Available" %}
       <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
@@ -70,8 +70,8 @@ $(function() {
       {% endif %}
     </div>
     <div class="card-body">
+      <p class="card-text">{{ProfService.totalHours }} hours</p>
       <p class="card-text">{{ProfService.description }}</p>
-      <h6 class="card-subtitle text-muted">Author: {{ ProfService.author }} </h6>
     </div>
     <div class="card-footer text-muted">
       {% if user.is_authenticated %}

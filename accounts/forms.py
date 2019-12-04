@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 
 class UserLoginForm(forms.Form):
     """Form for login page"""
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(required=True, max_length=20)
+    password = forms.CharField(widget=forms.PasswordInput, required=True, max_length=50)
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -27,7 +27,7 @@ class UserRegistrationForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
         if User.objects.filter(email=email).exclude(username=username):
-            raise forms.ValidationError(u'Email address is already registered for another user.')
+            raise forms.ValidationError(u'Email address is already registered. Use an email is not registered.')
         return email
 
     def clean_password2(self):
@@ -35,10 +35,10 @@ class UserRegistrationForm(UserCreationForm):
         password2 = self.cleaned_data.get('password2')
 
         if not password1 or not password2:
-            raise ValidationError("Please confirm your password")
+            raise ValidationError("Please confirm your password.")
 
         if password1 != password2:
-            raise ValidationError("Passwords must match")
+            raise ValidationError("Password doesn't match.")
 
         return password2
 

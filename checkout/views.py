@@ -27,7 +27,7 @@ def checkout(request):
             total = 0
             for id, quantity in cart.items():
                 ProfService = get_object_or_404(PServices, pk=id)
-                total += quantity * 5
+                total += PServices.udPrice
                 order_line_item = OrderLineItem(
                     order=order,
                     ProfService=ProfService,
