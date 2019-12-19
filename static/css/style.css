@@ -65,6 +65,7 @@ footer a:hover {
 .shopping-icon {
     width: 24px;
     height: 24px;
+    position: relative;
 }
 
 
@@ -426,6 +427,25 @@ input[type="search"] {
 
 /*------------------------ media ----------------------------------*/
 
+@media (min-width:992px) {
+    .navbar {
+        max-height: 54px;
+    }
+    
+    .shopping-icon {
+        position: fixed;
+    }
+
+    .item-count {
+        position: inherit;
+        font-size: 10px;
+        font-weight: bold;
+        bottom: 12px;
+        padding: 5px 8px;
+        margin-left: 0.5px;
+    }
+}
+
 @media only screen and (min-width: 900px) {
     .breadcrumb {
         padding-left: 160px;
@@ -467,7 +487,7 @@ input[type="search"] {
     }
 
     .shopping-icon {
-        position: fixed;
+        position: relative;
     }
 
     .item-count {
@@ -486,15 +506,16 @@ input[type="search"] {
     }
     
     .shopping-icon {
-        position: fixed;
+        position: relative;
     }
 
     .item-count {
-        position: inherit;
+        position: relative;
         font-size: 10px;
         font-weight: bold;
+        top: -15px;
         bottom: 12px;
-        padding: 5px 8px;
+        padding: 0px 8px;
         margin-left: 0.5px;
     }
 }
@@ -521,6 +542,7 @@ input[type="search"] {
     }
 
     .shopping-icon {
+       margin-top: 0px;
         position: fixed;
     }
 
@@ -529,29 +551,12 @@ input[type="search"] {
         font-size: 10px;
         font-weight: bold;
         bottom: 12px;
-        padding: 5px 8px;
+        padding: 0px 8px;
         margin-left: 0.5px;
     }
 }
 
-@media (min-width:992px) {
-    .navbar {
-        max-height: 54px;
-    }
-    
-    .shopping-icon {
-        position: fixed;
-    }
 
-    .item-count {
-        position: inherit;
-        font-size: 10px;
-        font-weight: bold;
-        bottom: 12px;
-        padding: 5px 8px;
-        margin-left: 0.5px;
-    }
-}
 
 @media (max-width:364px) {
     .display-4 {
