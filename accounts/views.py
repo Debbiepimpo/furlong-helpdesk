@@ -23,10 +23,10 @@ def contact(request):
                 subject,
                 "Message from: " +
                 request.POST['email'] +
-                "Message: " +
+                "\nMessage: " +
                 message,
                 'SERVER_EMAIL',
-                ['debora199318@gmail.com'],
+                ['deboraperaltaorozco@gmail.com'],
                 fail_silently=False,
             )
             messages.success(request, "Your message has been sent!",

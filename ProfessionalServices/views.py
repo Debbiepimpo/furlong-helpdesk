@@ -9,9 +9,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 users = []
 
-def support_request_sent(request):
-    """View to return after requesting an hour"""
-    return render(request, 'request_support.html')
     
 @login_required
 def request_an_hour(request):
@@ -24,15 +21,15 @@ def request_an_hour(request):
             send_mail(
                 subject,
                 "Message from: " +
-                request.POST['email'] +
-                "Message: I would like to request an hour of support on " + date_required,
+                request.POST['email'] + 
+                "\nMessage: I would like to request an hour of support on " + date_required,
                 'SERVER_EMAIL',
-                ['debora199318@gmail.com'],
+                ['deboraperaltaorozco@gmail.com'],
                 fail_silently=False,
             )
             messages.success(request, "Your message has been sent!",
                                       extra_tags="alert-success")
-            return redirect(reverse('support_request_sent'))
+            return redirect(reverse('index'))
         else:
             messages.error(request, "Unable to send message at this time",
                                     extra_tags="alert-danger")
