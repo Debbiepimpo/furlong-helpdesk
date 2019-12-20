@@ -10,12 +10,12 @@
   </div>
 </section>
 
-<!--   Navigation to submit a Professional Service or back to all Professional Services  -->
+<!--   Navigation to request a Professional Service or back to all Professional Services  -->
 
 <section class="container">
   <div class="row">
     <div class="profile-submit-buttons col-sm-6 center">
-      <a href="{% url 'new_ProfService' %}"><button type="button" class="btn btn-color"> Request an hour of Professional Services</button></a>
+      <a href="{% url 'request_support' %}"><button type="button" class="btn btn-color"> Request an hour of Professional Services</button></a>
     </div>
     <div class="profile-submit-buttons col-sm-6 center">
       <a href="{% url 'view_ProfessionalServices' %}"><button type="button" class="btn btn-color"> Back to Professional Services</button></a>
@@ -26,47 +26,27 @@
 
   {% for ProfService in ProfessionalServices %}
   <div class="card mb-3">
-    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
+    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="fas fa-pound-sign"> {{ProfService.udPrice}}</i></span></div>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+      {% if ProfService.status == "Available" %}
+      <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
+      {% else %}
+      <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
+      {% endif %}
     </div>
     <div class="card-body">
+      <p class="card-text">{{ProfService.totalHours }} hours</p>
       <p class="card-text">{{ProfService.description }}</p>
-      <h6 class="card-subtitle text-muted">Author: {{ ProfService.author }} </h6>
     </div>
     <div class="card-footer text-muted">
-      <i class="far fa-eye"> {{ ProfService.views }} </i> {% if user.is_authenticated %}
-      <a href="{% url 'add_to_cart' ProfService.id %}" data-toggle="modal" data-target="#exampleModal" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
-      <a href="{% url 'ProfService_detail' ProfService.id %}" aria-label="comments"><i class="far fa-comment"> ({{ ProfService.comment_number }}) </i></a> {% else %}
-      <i class="fas fa-cart-plus">  Add to Cart</i>
-      <i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> {% endif %}
-      <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
+      {% else %}
+      <i class="fas fa-cart-plus"> Add to Cart</i> {% endif %}
+      <a class="btn btn-color-fs buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
     </div>
   </div>
 
-  <!--   Bootstrap modal with purchase information   -->
-
-  <div class="modal" id="exampleModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Professional Service: {{ProfService.name|truncatewords:"4"}}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>Thank you for chosing to purchase this Professional Service.</p>
-          <p> Each Professional Service you purchase comes with a £5 charge.</p>
-          <p> If you wish to continue click the purchase button.</p>
-          <p>The Professional Service will then be added to your cart where you can checkout at your convenience.</p>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <a href="{% url 'add_to_cart' ProfService.id %}"><button type="button" class="btn btn-color">Upvote</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
   {% endfor %}
 
 

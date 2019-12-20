@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 
 class PServices(models.Model):
@@ -26,10 +25,10 @@ class PServices(models.Model):
 
 class PServices_Bought(models.Model):
     """Professional Services Bought model"""
-    comment = models.TextField(max_length=256, blank=False)
+    name = models.CharField(max_length=75, blank=False)
+    description = models.TextField(max_length=500, blank=False)
     ProfService = models.ForeignKey(PServices)
-    udPrice = models.IntegerField(blank=False)
     totalHours = models.IntegerField(blank=False)
 
     def __str__(self):
-        return self.comment
+        return self.name
