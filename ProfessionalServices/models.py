@@ -6,7 +6,7 @@ class PServices(models.Model):
     name = models.CharField(max_length=75, blank=False)
     description = models.TextField(max_length=500, blank=False)
     purchases = models.IntegerField(default=0)
-    udPrice = models.IntegerField(blank=False)
+    udPrice =  models.DecimalField(max_digits=8, decimal_places=2)
     totalHours = models.IntegerField(blank=False)
 
     STATUS_CHOICES = (

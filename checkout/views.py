@@ -27,7 +27,7 @@ def checkout(request):
             total = 0
             for id, quantity in cart.items():
                 ProfService = get_object_or_404(PServices, pk=id)
-                total += PServices.udPrice
+                total += quantity * ProfService.udPrice
                 order_line_item = OrderLineItem(
                     order=order,
                     ProfService=ProfService,
@@ -37,7 +37,7 @@ def checkout(request):
 
             try:
                 customer = stripe.Charge.create(
-                    amount=int(total * 100),
+                    amount = int(total * 100),
                     currency="GBP",
                     description=request.user.email,
                     card=payment_form.cleaned_data['stripe_id']
@@ -61,7 +61,7 @@ def checkout(request):
                     ProfService.purchases += 1
                     ProfService.save()
                 request.session['cart'] = {}
-                return redirect(reverse('view_ProfessionalServices'))
+                return redirect(reverse('view_completed_ProfessionalServices'))
             else:
                 messages.error(
                     request,
