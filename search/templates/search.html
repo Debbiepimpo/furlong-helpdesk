@@ -20,7 +20,7 @@
             <a class="nav-link" data-toggle="tab" href="#ProfessionalServices">Professional Services ({{ ProfessionalServices.count }}) </a>
         </li>
     </ul>
-    <div id="myTabContent" class="tab-content">
+    <div id="tabContent" class="tab-content">
         <div class="tab-pane fade show active" id="all">
             {% if hours.count == 0 and ProfessionalServices.count == 0}
             <div class="card mb-3">

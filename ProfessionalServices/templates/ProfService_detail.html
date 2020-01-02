@@ -10,7 +10,7 @@
         </div>
         <div class="card-footer text-muted">
             {% if user.is_authenticated %}
-            <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %} {% else %}
+            {% csrf_token %} {% else %}
             {% endif %}
             <a class="btn btn btn-color buttons-right" href="{% url 'view_ProfessionalServices'%}" role="button">Back</a>
         </div>

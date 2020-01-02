@@ -104,7 +104,7 @@ def registration(request):
 @login_required
 def profile(request):
     """A view that displays the profile page of a logged in user"""
-    hours = Hour.objects.filter(author=request.user)
-    ProfessionalServices = PServices.objects.filter(author=request.user)
-    return render(request, 'profile.html', {'hours': hours,
-                                            'ProfessionalServices': ProfessionalServices})
+    user = auth.authenticate(username=request.POST.get('username'))
+    return render(request, 'profile.html', {'username': user,
+                                            })
+

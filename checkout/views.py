@@ -61,7 +61,7 @@ def checkout(request):
                     ProfService.purchases += 1
                     ProfService.save()
                 request.session['cart'] = {}
-                return redirect(reverse('view_completed_ProfessionalServices'))
+                return redirect(reverse('profile'))
             else:
                 messages.error(
                     request,
