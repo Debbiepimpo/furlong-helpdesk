@@ -21,14 +21,3 @@ class PServices(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class PServices_Bought(models.Model):
-    """Professional Services Bought model"""
-    name = models.CharField(max_length=75, blank=False)
-    description = models.TextField(max_length=500, blank=False)
-    ProfService = models.ForeignKey(PServices)
-    totalHours = models.IntegerField(blank=False)
-
-    def __str__(self):
-        return self.name

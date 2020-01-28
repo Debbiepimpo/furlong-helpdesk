@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from hours.models import Hour
 from ProfessionalServices.models import PServices
+from checkout.models import Order
 
 def index(request):
     """View to return index"""
@@ -104,7 +105,19 @@ def registration(request):
 @login_required
 def profile(request):
     """A view that displays the profile page of a logged in user"""
-    user = auth.authenticate(username=request.POST.get('username'))
-    return render(request, 'profile.html', {'username': user,
-                                            })
-
+    orders = Order.objects.filter(user_id=request.user.id).order_by('-id').exclude(status='Inactive')
+    totalHours=0
+    totalHoursRequested=0
+    ProfessionalServices = []
+    Hours = []
+    for order in orders:
+        totalHours+=order.remainingHours
+        ProfessionalServices.append(get_object_or_404(PServices, pk=order.ProfService_id))
+        requestedHours = Hour.objects.filter(order_id=order).order_by('id')
+        for requestedHour in requestedHours:
+            totalHoursRequested+=requestedHour.requested_hours
+            Hours.append(requestedHour)
+    return render(request, 'profile.html', {'Orders':orders, 
+                    'ProfessionalServices': ProfessionalServices, 'totalHours':totalHours, 
+                    'totalHoursRequested': totalHoursRequested, 'hours': Hours
+    })

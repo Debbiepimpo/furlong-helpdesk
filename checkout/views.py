@@ -19,21 +19,17 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
 
         if order_form.is_valid() and payment_form.is_valid():
-            order = order_form.save(commit=False)
-            order.date = timezone.now()
-            order.save()
-
             cart = request.session.get('cart', {})
-            total = 0
             for id, quantity in cart.items():
                 ProfService = get_object_or_404(PServices, pk=id)
+                total = 0
                 total += quantity * ProfService.udPrice
-                order_line_item = OrderLineItem(
-                    order=order,
-                    ProfService=ProfService,
-                    quantity=quantity
-                )
-                order_line_item.save()
+                order = order_form.save(commit=False)
+                order.date = timezone.now()
+                order.remainingHours = ProfService.totalHours
+                order.ProfService = ProfService
+                order.user = request.user
+                order.save()
 
             try:
                 customer = stripe.Charge.create(

@@ -1,16 +1,7 @@
 from django import forms
-from .models import Hour, HourComment
+from .models import Hour
 
-
-class CreateHourForm(forms.ModelForm):
-    """Form to create hours"""
+class HourForm(forms.ModelForm):
     class Meta:
         model = Hour
-        fields = ('name', 'description')
-
-
-class HourCommentForm(forms.ModelForm):
-    """Form to create hour comments"""
-    class Meta:
-        model = HourComment
-        fields = ('comment',)
+        fields = ('requested_hours', 'requested_date', 'order', 'comments', 'name')

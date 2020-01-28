@@ -19,7 +19,17 @@ class RequestForm(forms.Form):
     date_required = forms.DateField(widget=DateInput)
     start_time  = forms.TimeField(widget=TimeInput)
     finish_time  = forms.TimeField(widget=TimeInput)
-    package = forms.ChoiceField(required=True)
+    
+    orders = Order.objects.filter(user_id=request.user.id).order_by('-id').exclude(status='Inactive')
+    ProfessionalServices = []
+    for order in orders:
+        ProfessionalServices.append(get_object_or_404(PServices, pk=order.ProfService_id))
+    PACKAGE_CHOICES = (
+        ('Active', 'Active'),
+        ('Inactive', 'Inactive')
+    )
+    package = forms.ChoiceField(choices=PACKAGE_CHOICES, widget=forms.Select(),
+                              required=True)
         
     def clean(self):
         end = self.cleaned_data.get("finish_time")
@@ -31,8 +41,7 @@ class RequestForm(forms.Form):
             raise ValidationError('requested date must after today')
 
     def __init__(self, user, *args, **kwargs):
-        super(RequestForm, self).__init__(*args, **kwargs)
-        self.fields['package'] = forms.ChoiceField(
-            choices=[(service.id, str(service)) for service in Order.objects.filter(user_id=user.id).order_by('id').exclude(status='Inactive')],
-            required=True
+        super(waypointForm, self).__init__(*args, **kwargs)
+        self.fields['waypoints'] = forms.ChoiceField(
+            choices=[(service.id, str(service)) for service in Waypoint.objects.filter(user=user)]
         )

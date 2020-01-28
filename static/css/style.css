@@ -169,6 +169,7 @@ input[type="search"] {
 .display-progress,
 .display-contact,
 .display-professionalServices,
+.display-profile,
 .display-signUp,
 .display-login,
 .display-ShoppingBag,
@@ -203,6 +204,7 @@ input[type="search"] {
     color: #512d6d;
 }
 
+.display-profile,
 .display-ShoppingBag {
     color: #512d6d;
 }
@@ -234,6 +236,10 @@ input[type="search"] {
 
 .parallax-progress {
     background-image: url("/static/img/progress-management.jpeg");
+}
+
+.parallax-profile {
+    background-image: url("/static/img/profile.jpg");
 }
 
 .parallax-contact {

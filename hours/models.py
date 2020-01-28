@@ -1,43 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from checkout.models import Order
 
 
 class Hour(models.Model):
     """Hour model"""
-    name = models.CharField(max_length=75, blank=False)
-    description = models.TextField(max_length=500, blank=False)
-    purchases = models.IntegerField(default=0)
-    totalHours = models.IntegerField(blank=False)
+    name = models.TextField(max_length=500, blank=False)
+    comments = models.TextField(max_length=500, blank=True)
+    requested_hours = models.IntegerField(blank=False)
+    requested_date = models.DateTimeField()
+    order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True, blank=True)
+    
 
     STATUS_CHOICES = (
-        ('Available', 'Available'),
-        ('Current Unavailable', 'Current Unavailable')
+        ('Approved', 'Approved'),
+        ('Pending', 'Pending'),
+        ('Rejected', 'Rejected')
     )
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='Available'
+        default='Pending'
     )
 
     def __str__(self):
         return self.name
-
-
-class HourComment(models.Model):
-    """Hour comment model"""
-    comment = models.TextField(max_length=256, blank=False)
-    hour = models.ForeignKey(Hour)
-    created_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.comment
-
-
-class HourUpvote(models.Model):
-    """ Model to purchase a hour """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    hour = models.ForeignKey(Hour, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.hour.title

@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_heading %} Profile {% endblock %} {% block content %}
 
-<section class="parallax parallax-ProfessionalServices">
+<section class="parallax parallax-profile">
   <div class="container main-message">
     <div class="jumbotron">
-      <h1 class="display-professionalServices">My Profile.</h1>
+      <h1 class="display-profile"> <br >My Profile.</h1>
     </div>
   </div>
 </section>
@@ -22,10 +22,10 @@
     <!--   Bootswatch tabs to display hours and ProfessionalServices    -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#ProfessionalServices" aria-hidden="true">Profesional Services ({{ ProfessionalServices.totalHours.count }})</a>
+            <a class="nav-link active" data-toggle="tab" href="#ProfessionalServices" aria-hidden="true">Profesional Services ({{ totalHours }})</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#hours" aria-hidden="true">Hours ({{ hours.count }})</a>
+            <a class="nav-link" data-toggle="tab" href="#hours" aria-hidden="true">Hours ({{ totalHoursRequested }})</a>
         </li>
     </ul>
     <div id="tabContent" class="tab-content">
@@ -35,9 +35,9 @@
                 <h3 class="card-header">{{ProfService.name|truncatewords:"5"}}</h3>
                 <div class="progress">
                   {% if ProfService.status == "Available" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
+                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Active </div>
                   {% else %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
+                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Inactive </div>
                   {% endif %}
                 </div>
                 <div class="card-body">
@@ -59,20 +59,22 @@
         <div class="tab-pane fade" id="hours">
             {% if hours %} {% for hour in hours %}
             <div class="card mb-3">
-                <h3 class="card-header">{{hour.name|truncatewords:"5"}}</h3>
+                <h3 class="card-header">{{hour.requested_date|truncatewords:"5"}}</h3>
                 <div class="progress">
-                  {% if ProfService.status == "Available" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
+                  {% if hour.status == "Approved" %}
+                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
+                  {% elif hour.status == "Rejected" %}
+                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Rejected </div>
                   {% else %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
+                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Pending </div>
                   {% endif %}
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{hour.description}}</p>
+                    <p class="card-text">{{hour.comments}}</p>
                 </div>
                 <div class="row card-footer text-muted">
                     <div class="col-sm profile-buttons">
-                        <a class="btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
+                        <a class="btn btn-color buttons-right" href="{% url 'view_hours' %}" role="button">View</a>
                     </div>
                 </div>
             </div>

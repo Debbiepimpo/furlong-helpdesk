@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib import auth
 from django.contrib.auth.models import User
-from .models import PServices, PServices_Bought
+from .models import PServices
 
 
 class TestPServicesModel(TestCase):

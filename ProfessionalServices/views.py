@@ -3,8 +3,10 @@ from django.core.mail import send_mail
 from django.contrib import auth, messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .models import PServices, PServices_Bought
+from .models import PServices
 from .forms import RequestForm
+from hours.forms import HourForm
+from checkout.models import Order
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 users = []
@@ -14,15 +16,32 @@ users = []
 def request_an_hour(request):
     """View handle support requests form"""
     if request.method == 'POST':
-        request_form = RequestForm(request.POST)
+        request_form = RequestForm(request.user,request.POST)
         if request_form.is_valid():
+            name = request.POST['name']
             subject = request.POST['subject']
             date_required = request.POST['date_required']
+            start_time = request.POST['start_time']
+            finish_time = request.POST['finish_time']
+            order_id = request.POST['package']
+            order_data = get_object_or_404(Order, pk=order_id)
+            hourForm = HourForm()
+            requestedHour = hourForm.save(commit=False)
+            requestedHour.name = name
+            sh, sm = start_time.split(':')
+            fh, fm = finish_time.split(':')
+            requested_hours = int(fh)-int(sh)
+            requestedHour.requested_hours = requested_hours
+            requestedHour.requested_date = date_required
+            requestedHour.order = order_data
+            requestedHour.save()
+            order_data.remainingHours = (order_data.remainingHours - requested_hours)
+            order_data.save()
             send_mail(
                 subject,
                 "Message from: " +
                 request.POST['email'] + 
-                "\nMessage: I would like to request an hour of support on " + date_required,
+                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time,
                 'SERVER_EMAIL',
                 ['deboraperaltaorozco@gmail.com'],
                 fail_silently=False,
@@ -34,7 +53,7 @@ def request_an_hour(request):
             messages.error(request, "Unable to send message at this time",
                                     extra_tags="alert-danger")
     else:
-        request_form = RequestForm()
+        request_form = RequestForm(request.user)
     return render(request, 'request_support.html', {'request_form': request_form})
 
 
