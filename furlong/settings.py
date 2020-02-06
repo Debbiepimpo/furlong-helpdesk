@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'checkout',
     'search',
     'progress',
-    'schedule',
 ]
 
 MIDDLEWARE = [

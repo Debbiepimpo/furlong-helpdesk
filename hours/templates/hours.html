@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% load static from staticfiles %} {% block page_heading %} Hours {% endblock %}}{% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% load static from staticfiles %} {% block page_heading %} Hours {% endblock %}}
+{% block content %}
 <!--   Main page image   -->
 <section class="parallax parallax-hours">
   <div class="container main-message">
@@ -12,25 +13,24 @@
   <!--   Professional Services packages  -->
 
   {% for hour in hours %}
-  <div class="card mb-3">
-    <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"><i class="fas fa-pound-sign"> {{ProfService.udPrice}}</i></span></div>
-    <div class="progress">
-      {% if hour.status == "Approved" %}
-      <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
-      {% elif hour.status == "Pending" %}
-      <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Pending </div>
-      {% elif hour.status == "Rejected" %}
-      <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Rejected </div>
-      {% endif %}
-    </div>
-    <div class="card-body">
-      <p class="card-text">{{hour.requested_hours }} hours</p>
-      <p class="card-text">{{hour.comments }}</p>
-    </div>
-    <div class="card-footer text-muted">
-    </div>
-  </div>
-
+      <!-- Collapse buttons -->
+      <div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{hour.id}}" aria-expanded="false" aria-controls="collapseExample">
+          Button with data-target
+        </button>
+        
+        <div class="collapse" id="collapseExample{{hour.id}}">
+          <div class="mt-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+            keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
+      </div>
+      <!-- / Collapse buttons -->
+      
+      <!-- Collapsible element -->
+      <!-- / Collapsible element -->
   {% endfor %}
 
   <!--   Pagination Professional Services   -->
