@@ -5,8 +5,7 @@
         <div class="jumbotron">
             <img class="furlong-slogan" src="/static/img/furlong-logo.png" alt=""></img>
             </br>
-            {% if user.is_authenticated %} {% else %}
-            <a class="btn btn-color-fs btn-lg" href="{% url 'registration' %}" role="button" aria-label="Register">Register</a> {% endif %}
+            
         </div>
     </div>
 </section>
@@ -43,17 +42,32 @@
                     Manage the available hours you have.
                 </div>
             </div>
+            {% if user.is_authenticated %}
             <div class="col-sm-6 col-md-3">
                 <div class="index-icon">
-                    <a href="{% url 'progress' %}" aria-label="progress"> <i class="fas fa-chart-pie"></i></a>
+                    <a href="{% url 'profile' %}" aria-label="profile"> <i class="fas fa-user-circle"></i></a>
                 </div>
                 <div class="index-sub-header">
-                    <strong class="display-title">Progress</strong>
+                    <strong class="display-title">Profile</strong>
                 </div>
                 <div class="index-sub-text display-title">
-                    Check the progress of your enquiries.
+                    Manage your hours and check status of your enquiries.
                 </div>
             </div>
+            {% else %}
+            <div class="col-sm-6 col-md-3">
+                <div class="index-icon">
+                    <a href="{% url 'registration' %}" aria-label="register"> <i class="fas fa-user-plus"></i></a>
+                </div>
+                <div class="index-sub-header">
+                    <strong class="display-title">Register</strong>
+                </div>
+                <div class="index-sub-text display-title">
+                   Start the management of your Profesional Services hours.
+                </div>
+            </div>
+             {% endif %}
+            
             <div class="col-sm-6 col-md-3">
                 <div class="index-icon">
                     <a href="{% url 'contact' %}" aria-label="hours"> <i class="fas fa-envelope-open-text"></i></a>
@@ -83,16 +97,6 @@
         <p>
             Once registered you could manage all the support we've been provided, we are providing and we'll provide.
         </p>
-    </div>
-
-    <!--   Register button   -->
-
-    <div class="container center">
-        <div class="bottom-register">
-            {% if user.is_authenticated %} {% else %}
-            <a class="btn btn-color-fs btn-lg" href="{% url 'registration' %}" role="button" aria-label="register">Register</a> {% endif %}
-        </div>
-
     </div>
 
     <!--   Bootstrap Modal   -->

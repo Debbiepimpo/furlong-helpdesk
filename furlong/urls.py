@@ -22,7 +22,6 @@ from ProfessionalServices import urls as urls_ProfessionalServices
 from cart import urls as urls_cart
 from checkout import urls as urls_checkout
 from search import urls as urls_search
-from progress import urls as urls_graphs
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,7 +31,6 @@ urlpatterns = [
     url(r'^ProfessionalServices/', include(urls_ProfessionalServices)),
     url(r'^cart/', include(urls_cart)),
     url(r'^checkout/', include(urls_checkout)),
-    url(r'^search/', include(urls_search)),
-    url(r'^progress/', include(urls_graphs))
+    url(r'^search/', include(urls_search))
 
 ]

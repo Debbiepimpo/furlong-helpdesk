@@ -38,7 +38,7 @@ class TestUserRegistrationForm(TestCase):
         form = UserRegistrationForm({'username': 'test',
                                      'email': 'test@admin.com',
                                      'password1': 'testpassword',
-                                     'password2': 'testpasswor'})
+                                     'password2': 'testpasword'})
         self.assertFalse(form.is_valid())
 
     def test_cannot_register_a_user_without_required_values(self):

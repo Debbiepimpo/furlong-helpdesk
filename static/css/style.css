@@ -60,7 +60,7 @@ footer a:hover {
     margin-left: 0px;
 }
 
-/*---------------------------- Shopping bag icon ---------------------------------------*/
+/*------------------------ Shopping bag icon ----------------------------*/
 
 .shopping-icon {
     width: 24px;
@@ -84,7 +84,7 @@ footer a:hover {
 }
 
 
-/*---------------------------- Navbar ---------------------------------------*/
+/*------------------------ Navbar ---------------------------------------*/
 
 .navbar {
     background-color: #d3b6ea;
@@ -92,11 +92,6 @@ footer a:hover {
 }
 
 
-.bottom-padding {
-
-    padding-bottom: 54px;
-
-}
 
 .logo {
     background: url("/static/img/full-logo.png");
@@ -115,7 +110,7 @@ footer a:hover {
 }
 
 
-/*-----------------------------Buttons---------------------------------------*/
+/*------------------------ Buttons --------------------------------------*/
 
 input[type="search"] {
     background: transparent;
@@ -148,14 +143,16 @@ input[type="search"] {
 
 .btn-color-fs {
     background-color: #d3b6ea;
-    border-color: #d3b6ea;
+    border-color: #512d6d4a;
     border-radius: 25px;
+    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
 }
 
+.btn-right { 
+    float: right;
+}
 
-
-
-/*------------------------ Parralax header ----------------------------------*/
+/*------------------------ Parralax header ------------------------------*/
 
 .jumbotron {
     background-color: rgba(255, 255, 255, 0.0);
@@ -166,7 +163,6 @@ input[type="search"] {
     color: white;
 }
 
-.display-progress,
 .display-contact,
 .display-professionalServices,
 .display-profile,
@@ -192,12 +188,9 @@ input[type="search"] {
     font-weight: 500;
 }
 
-.display-progress {
-    color: #f6303e;
-}
 
 .display-professionalServices {
-    color: #d3b6ea;
+    color: #512d6d;
 }
 
 .display-title {
@@ -234,10 +227,6 @@ input[type="search"] {
     background-image: url("/static/img/support.jpg");
 }
 
-.parallax-progress {
-    background-image: url("/static/img/progress-management.jpeg");
-}
-
 .parallax-profile {
     background-image: url("/static/img/profile.jpg");
 }
@@ -255,12 +244,8 @@ input[type="search"] {
     background-image: url("/static/img/shop-bag.jpg");
 }
 
-.parallax-archive {
-    background-image: url("/static/img/archive.jpeg");
-}
 
-
-/*------------------------ Index ----------------------------------*/
+/*------------------------ Index ----------------------------------------*/
 
 .index-title {
     margin-top: 110px;
@@ -307,36 +292,26 @@ input[type="search"] {
     text-decoration: none;
 }
 
-/*------------------------ Login/Register ----------------------------------*/
+
+/*------------------------ Login/Register -------------------------------*/
 
 .input-forms {
     margin-top: 35px;
     margin-bottom: 30px;
 }
 
-/*------------------------ Hours & Professional Services ----------------------------------*/
 
-.card-footer {
-    text-align: center;
+/*------------------------ Cards on Professional Services ---------------*/
+
+.card-header {
+    background-color: transparent;
 }
 
-.card-footer i {
-    float: left;
-    margin-top: 10px;
-    margin-left: 20px;
-    font-size: 20px;
-}
-
-.card-footer .btn-color .btn-danger {
-    float: right;
-}
-
-.buttons-right {
-    float: right;
-}
-
-.comments {
-    margin-left: 3px;
+.mb-3 {
+    margin-top: 20px;
+    border: hidden;
+    background-color: #d3b6ead4;
+    border-radius: 25px;
 }
 
 .progress {
@@ -353,13 +328,15 @@ input[type="search"] {
     float: right;
 }
 
-.mb-3 {
-    margin-top: 20px;
-    border: hidden;
-}
-
 .full-height {
     height: 95%;
+}
+
+.card-body {
+    background-color: white;
+    padding: 15px;
+    border-right: 1px solid #d3b6ea;
+    border-left: 1px solid #d3b6ea;
 }
 
 .cart-item-height {
@@ -374,20 +351,24 @@ input[type="search"] {
     padding-top: 30px;
 }
 
-.dropdown-menu>li>a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    text-decoration: none;
+.card-footer {
+    text-align: center;
+    background-color: transparent;
 }
 
-.dropdown-menu>li>a:hover {
-    background-color: #2780E3;
-    color: white;
+.card-footer i {
+    float: left;
+    margin-top: 5px;
+    font-size: 20px;
 }
 
-/*------------------------ profile  ----------------------------------*/
+.card-footer .btn-color .btn-danger,
+.buttons-right {
+    float: right;
+}
+
+
+/*------------------------ Profile  -------------------------------------*/
 
 .profile-submit-buttons {
     padding-top: 20px;
@@ -411,7 +392,8 @@ input[type="search"] {
     color: red;
 }
 
-/*------------------------ checkout  ----------------------------------*/
+
+/*------------------------ Checkout  ------------------------------------*/
 
 .checkout-button {
     padding-bottom: 20px;
@@ -433,11 +415,11 @@ input[type="search"] {
 }
 
 
-/*------------------------ media ----------------------------------*/
+/*------------------------ Media ----------------------------------------*/
 
 @media (min-width:992px) {
     .navbar {
-        max-height: 54px;
+        max-height: 63px;
     }
     
     .shopping-icon {

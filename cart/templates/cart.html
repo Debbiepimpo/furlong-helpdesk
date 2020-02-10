@@ -22,15 +22,14 @@
                 <h3 class="card-header">{{ item.ProfService.name|truncatechars:30 }}</h3>
                 <div class="card-body">
                     <p class="card-text">{{ item.ProfService.description }}</p>
-                    <h6 class="card-subtitle text-muted">Author: {{ item.ProfService.author }} </h6>
                 </div>
                 <div class="card-footer text-muted">
                     <i class="fas fa-pound-sign"> {{ item.ProfService.udPrice }} </i>
                     <form method="post" action="{% url 'adjust_cart' item.id %}">
                         {% csrf_token %} {% if item.quantity > 1 %}
-                        <button class="btn btn-color" type="submit"><span>Remove</span></button>
+                        <button class="btn btn-color btn-right" type="submit"><span>Remove</span></button>
                         {% else %}
-                        <button class="btn btn-color" type="submit"><span>Delete</span></button>
+                        <button class="btn btn-color btn-right" type="submit"><span>Delete</span></button>
                         {% endif %}
                     </form>
                 </div>

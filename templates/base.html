@@ -21,7 +21,7 @@
 
 <body class="d-flex flex-column">
     <!-- Naviagtion bar -->
-    <div class="navbar flex-shrink-0 bottom-padding">
+    <div class="navbar flex-shrink-0">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <a class="navbar navbar-brand logo" href="{% url 'index' %}" aria-label="home"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,13 +41,10 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-clock"></i> Hours</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'progress' %}"><i class="fas fa-chart-pie"></i> Progress</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'contact' %}"><i class="fas fa-envelope-open-text"></i> Contact</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -71,21 +68,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Explore </a>
+                <li class="nav-item nav-color dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'view_ProfessionalServices' %}"><i class="fas fa-headset"></i>  Professional Services</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-clock"></i>  Available hours.</a>
+                        <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-clock"></i>  Hours</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'progress' %}"><i class="fas fa-chart-pie"></i>  Progress</a>
+                        <a class="dropdown-item" href="{% url 'registration' %}"><i class="fas fa-user-plus"></i>  Register</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'contact' %}"><i class="fas fa-envelope-open-text"></i>  Contact</a>
 
                     </div>
-                </li>
-                <li class="nav-item">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
                 </li>
                 <li class="nav-item">
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
