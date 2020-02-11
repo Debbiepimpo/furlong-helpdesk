@@ -1,143 +1,70 @@
 {% extends 'base.html' %} {% block page_title %} Search Results {% endblock %} {% block content %} {% load bootstrap_tags %}
 
+
+<section class="parallax parallax-search">
+  <div class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-search"> <br >Search Results.</h1>
+    </div>
+  </div>
+</section>
+
 <section class="container detail-padding">
     <div class="row">
-        <div class="profile-submit-buttons">
+        <div class="search-results">
             <h1> Search results:</h1>
         </div>
     </div>
-
-    <!--   Bootswatch tabs to display search results   -->
-
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active mobile-search" data-toggle="tab" href="#all">All results ({{ total }})</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#hours">Hours ({{ hours.count }})</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ProfessionalServices">Professional Services ({{ ProfessionalServices.count }}) </a>
-        </li>
-    </ul>
-    <div id="tabContent" class="tab-content">
-        <div class="tab-pane fade show active" id="all">
-            {% if hours.count == 0 and ProfessionalServices.count == 0}
-            <div class="card mb-3">
-                <h3 class="card-header">No search results found</h3>
-            </div>
-            {% else %} {% for hour in hours %}
-            <div class="card mb-3">
-                <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
-                <div class="progress">
-                    {% if hour.status == "Available" %}
-                    <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-                    {% else %}
-                    <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
-                    {% endif %}
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{hour.description}}</p>
-                    <h6 class="card-subtitle text-muted">Author: {{ hour.author }} </h6>
-                </div>
-                <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchases"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
-                    <a href="{% url 'hour_detail' hour.id %}" aria-label="comments"><i class="far fa-comment"> ({{ hour.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-cart-plus"> Add to Cart</i>
-                    <i class="far fa-comment"> ({{ hour.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
-                </div>
-            </div>
-            {% endfor %} {% for ProfService in ProfessionalServices %}
-            <div class="card mb-3">
-                <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
-                <div class="card-body">
-                    <div class="progress">
-                        {% if ProfService.status == "Available" %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-                        {% else %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
-                        {% endif %}
-                    </div>
-                    <p class="card-text">{{ProfService.description}}</p>
-                    <h6 class="card-subtitle text-muted">Author: {{ ProfService.author }} </h6>
-                </div>
-                <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ ProfService.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
-                    <a href="{% url 'ProfService_detail' ProfService.id %}" aria-label="comments"><i class="far fa-comment"> ({{ ProfService.comment_number }}) </i></a> {% else %}
-                    <i class="fas fa-cart-plus"> Add to Cart</i>
-                    <i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> {% endif %}
-                    <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
-                </div>
-            </div>
-
-            {% endfor %}{% endif %}
+    <div class="tab-pane" id="all">
+        {% if hours.count == 0 and ProfessionalServices.count == 0 %}
+        <div class="card mb-3">
+            <h3 class="card-header">No search results found</h3>
         </div>
-        <div class="tab-pane fade show" id="hours">
-            {% if hours %} {% for hour in hours %}
-            <div class="card mb-3">
-                <div class="card-header"><strong>{{hour.name|truncatewords:"5"}}</strong><span class="card-link"> {{ hour.created_date }} </span></div>
-                <div class="card-body">
-                    <div class="progress">
-                        {% if hour.status == "Available" %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-                        {% else %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
-                        {% endif %}
-                    </div>
-                    <p class="card-text">{{hour.description}}</p>
-                    <h6 class="card-subtitle text-muted">Author: {{ hour.author }} </h6>
-                </div>
-                <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ hour.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'purchase_hour' hour.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
-                    <a href="{% url 'hour_detail' hour.id %}" aria-label="comments"><i class="far fa-comment"> ({{ hour.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-cart-plus"> Add to Cart</i>
-                    <i class="far fa-comment"> ({{ hour.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-color buttons-right" href="{% url 'hour_detail' hour.id %}" role="button">View</a>
-                </div>
+        {% else %}
+        <div class="search-title-padding">
+            <h4 class="search-title"> Professional Services Packages.</h4>
+        </div> 
+        {% for ProfService in ProfessionalServices %}
+        
+        <div class="card mb-3">
+            <h3 class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="far fa-clock"> {{ProfService.totalHours }} h.</i></span></h3>
+            <div class="progress">
+              {% if ProfService.status == "Available" %}
+              <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
+              {% else %}
+              <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Current Unavailable </div>
+              {% endif %}
             </div>
-            {% endfor %} {% else %}
-            <div class="card mb-3">
-                <h3 class="card-header">No search results found</h3>
+            <div class="card-body">
+                <p class="card-text">{{ProfService.description }}</p>
             </div>
-            {% endif %}
+            <div class="row card-footer text-muted"></div>
         </div>
-        <div class="tab-pane fade" id="ProfessionalServices">
-            {% if ProfessionalServices %} {% for ProfService in ProfessionalServices %}
-            <div class="card mb-3">
-                <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"> {{ ProfService.created_date }} </span></div>
-                <div class="card-body">
-                    <div class="progress">
-                        {% if ProfService.status == "Available" %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-                        {% else %}
-                        <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Current Unavailable </div>
-                        {% endif %}
-                    </div>
-                    <p class="card-text">{{ProfService.description }}</p>
-                    <h6 class="card-subtitle text-muted">Author: {{ ProfService.author }} </h6>
-                </div>
-                <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ ProfService.views }} </i> {% if user.is_authenticated %} Add to Cart</i>
-                    </a> {% csrf_token %}
-                    <a href="{% url 'ProfService_detail' ProfService.id %}" aria-label="comments"><i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-cart-plus"> Add to Cart</i>
-                    <i class="far fa-comment"> ({{ ProfService.comment_number }}) </i> {% endif %}
-                    <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
-                </div>
-            </div>
-
-            {% endfor %} {% else %}
-            <div class="card mb-3">
-                <h3 class="card-header">No search results found</h3>
-            </div>
-            {% endif %}
+        {% endfor %} 
+        <div class="search-title-padding">
+            <h4 class="search-title"> Hours.</h4>
         </div>
+        {% for hour in hours %}
+        
+        <div class="card mb-1">
+            <h3 class="card-header">{{hour.requested_date|truncatewords:"5"}}</h3>
+            <div class="progress">
+              {% if hour.status == "Approved" %}
+              <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
+              {% elif hour.status == "Rejected" %}
+              <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Rejected </div>
+              {% else %}
+              <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Pending </div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{hour.comments}}</p>
+            </div>
+            <div class="row card-footer text-muted"></div>
+        </div>
+        {% endfor %} {% endif %}
     </div>
+         
 
 </section>
-
 {% endblock %}

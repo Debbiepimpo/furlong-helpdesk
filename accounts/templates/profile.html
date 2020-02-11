@@ -9,16 +9,8 @@
 </section>
 
 <section class="container detail-padding">
-
-    <!--   Submission buttons   -->
-    <div class="btn-group bottom-register">
-        <button type="button" class="btn btn-sm btn-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Buy/Request<span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li><a class="" href="{% url 'view_ProfessionalServices' %}" role="button">More Professional Services</a></li>
-            <li><a class="" href="{% url 'request_support' %}" role="button">Request an Hour</a></li>
-        </ul>
-    </div>
-
+    <p class="profile-title"><strong> You can have the control of Professional Service packages bought, the hours you used and how many left.</strong></p>
+    </br>
     <!--   Bootswatch tabs to display hours and ProfessionalServices    -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -27,38 +19,41 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#hours" aria-hidden="true">Hours ({{ totalHoursRequested }})</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Buy/Request </a>
+            <div class="dropdown-menu dropdown-padd">
+              <a class="" href="{% url 'view_ProfessionalServices' %}" role="button"> Buy more Hours</a>
+              <div class="dropdown-divider"></div>
+              <a class="" href="{% url 'request_support' %}" role="button"> Request an Hour</a>
+            </div>
+        </li>
     </ul>
     <div id="tabContent" class="tab-content">
         <div class="tab-pane fade show active" id="ProfessionalServices">
             {% if ProfessionalServices %} {% for ProfService in ProfessionalServices %}
-            <div class="card mb-3">
-                <h3 class="card-header">{{ProfService.name|truncatewords:"5"}}</h3>
+            <div class="card mb-1">
+                <h3 class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="far fa-clock"> {{ProfService.totalHours }} h.</i></span></h3>
                 <div class="progress">
                   {% if ProfService.status == "Available" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Active </div>
+                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
                   {% else %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Inactive </div>
+                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Current Unavailable </div>
                   {% endif %}
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ProfService.description }}</p>
                 </div>
-                <div class="row card-footer text-muted">
-                    <div class="col-sm profile-buttons">
-                        <a class="btn btn-color buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
-                    </div>
-                </div>
             </div>
 
             {% endfor %} {% else %}
-            <div class="card mb-3">
+            <div class="card mb-1">
                 <h3 class="card-header">Oops! You haven't bought any Professional Services yet!</h3>
             </div>
             {% endif %}
         </div>
         <div class="tab-pane fade" id="hours">
             {% if hours %} {% for hour in hours %}
-            <div class="card mb-3">
+            <div class="card mb-1">
                 <h3 class="card-header">{{hour.requested_date|truncatewords:"5"}}</h3>
                 <div class="progress">
                   {% if hour.status == "Approved" %}
@@ -79,10 +74,11 @@
                 </div>
             </div>
             {% endfor %} {% else %}
-            <div class="card mb-3">
+            <div class="card mb-1">
                 <h3 class="card-header">Oops! You haven't requested any hours yet!</h3>
             </div>
             {% endif %}
         </div>
+    </div>
 </section>
 {% endblock %}

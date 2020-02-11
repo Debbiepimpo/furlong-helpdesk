@@ -7,19 +7,15 @@ from ProfessionalServices.models import PServices
 
 def do_search(request):
     """View that returns keyword searchs and renders search html with the results"""
-    hours = Hour.objects.filter(
-        name__icontains=request.GET['q']).exclude(
-        status='Cancelled').exclude(
-            status="Current Unavailable")
     ProfessionalServices = PServices.objects.filter(
-        name__icontains=request.GET['q']).exclude(
-        status='Cancelled').exclude(
-            status="Current Unavailable")
-    hours = hours.order_by("-purchases")
-    ProfessionalServices = ProfessionalServices.order_by("-purchases")
+        name__icontains=request.GET['q'])
+    hours = Hour.objects.filter(
+        name__icontains=request.GET['q'])
+    ProfessionalServices = ProfessionalServices.order_by("order")
+    hours = hours.order_by("order")
     total = hours.count() + ProfessionalServices.count()
     return render(request,
                   "search.html",
-                  {"hours": hours,
-                   "ProfessionalServices": ProfessionalServices,
-                   "total": total})
+                  {"ProfessionalServices": ProfessionalServices,
+                  "hours": hours,
+                  "total": total})

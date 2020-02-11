@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'search',
+    
 ]
 
 MIDDLEWARE = [
@@ -161,3 +162,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True #True with PORT 587 False for any other PORT
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+

@@ -10,6 +10,7 @@ body {
     height: 100%!important;
 }
 
+h5,
 a {
     color: #512d6d !important;
 }
@@ -60,6 +61,11 @@ footer a:hover {
     margin-left: 0px;
 }
 
+.dropdown-padd {
+    padding-left: 10px;
+}
+
+
 /*------------------------ Shopping bag icon ----------------------------*/
 
 .shopping-icon {
@@ -91,6 +97,21 @@ footer a:hover {
     margin-bottom: 0px;
 }
 
+.nav-tabs {
+    border-bottom: 1px solid #f6303e;
+}
+
+ .nav-tabs .nav-link.active {
+    color: #512d6d !important;
+    background-color: #fff;
+    border-color: #f6303e #f6303e #fff;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
 
 
 .logo {
@@ -169,6 +190,7 @@ input[type="search"] {
 .display-signUp,
 .display-login,
 .display-ShoppingBag,
+.display-search,
 .display-4 {
     font-size: 64px;
     font-weight: 400;
@@ -188,15 +210,12 @@ input[type="search"] {
     font-weight: 500;
 }
 
-
-.display-professionalServices {
-    color: #512d6d;
+.display-search {
+    color: #f6303e;
 }
 
-.display-title {
-    color: #512d6d;
-}
-
+.display-professionalServices,
+.display-title,
 .display-profile,
 .display-ShoppingBag {
     color: #512d6d;
@@ -242,6 +261,10 @@ input[type="search"] {
 
 .parallax-ShoppingBag {
     background-image: url("/static/img/shop-bag.jpg");
+}
+
+.parallax-search {
+    background-image: url("/static/img/search-2.jpg");
 }
 
 
@@ -307,6 +330,7 @@ input[type="search"] {
     background-color: transparent;
 }
 
+.mb-1,
 .mb-3 {
     margin-top: 20px;
     border: hidden;
@@ -368,7 +392,31 @@ input[type="search"] {
 }
 
 
+/*------------------------ Search ---------------------------------------*/
+
+.search-results,
+.search-title-padding{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search-title {
+    text-decoration: underline;
+}
+
+
 /*------------------------ Profile  -------------------------------------*/
+
+.profile-title {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.profile-title > strong {
+    color: #512d6d !important;
+}
 
 .profile-submit-buttons {
     padding-top: 20px;
@@ -391,6 +439,9 @@ input[type="search"] {
 .delete-button {
     color: red;
 }
+
+/*--- List of Hours and PS ---*/
+
 
 
 /*------------------------ Checkout  ------------------------------------*/
