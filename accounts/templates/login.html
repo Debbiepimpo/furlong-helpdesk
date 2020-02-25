@@ -14,9 +14,10 @@
     <!--   Login form   -->
     <form method="POST">
         {% csrf_token %} {{ login_form | as_bootstrap }}
-        <button type="submit" class="btn btn-color" aria-label="login">Login</button>
+        <button type="submit" class="btn btn-color-fs" aria-label="login">Login</button>
     </form>
+    <br />
     <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
-    <p>If you do not have an account, you can <a href="{% url 'registration' %}">register</a></p>
+    <p>If you do not have an account, <a href="{% url 'registration' %}">register here.</a></p>
 </main>
 {% endblock %}

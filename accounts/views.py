@@ -7,6 +7,8 @@ from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from hours.models import Hour
 from ProfessionalServices.models import PServices
 from checkout.models import Order
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def index(request):
     """View to return index"""
@@ -117,6 +119,37 @@ def profile(request):
         for requestedHour in requestedHours:
             totalHoursRequested+=requestedHour.requested_hours
             Hours.append(requestedHour)
+    """
+    This paginator is for the Profesional services 
+    into the profile section, it will show 6 Professional Services
+    per page.
+    """
+    paginatorProfService = Paginator(ProfessionalServices, 2) 
+
+    page = request.GET.get('page')
+    try:
+        ProfessionalServices = paginatorProfService.page(page)
+    except PageNotAnInteger:
+        ProfessionalServices = paginatorProfService.page(1)
+    except EmptyPage:
+        ProfessionalServices = paginatorProfService.page(paginatorProfService.num_pages)
+        
+    """
+    This paginator is the same as professional services 
+    but for the Hours section into the profile and 
+    it will show 6 Hours
+    per page too.
+    """
+    paginatorHours = Paginator(Hours, 5) 
+
+    page = request.GET.get('pageh')
+    try:
+        Hours = paginatorHours.page(page)
+    except PageNotAnInteger:
+        Hours = paginatorHours.page(1)
+    except EmptyPage:
+        Hours = paginatorHours.page(paginatorHours.num_pages)
+    
     return render(request, 'profile.html', {'Orders':orders, 
                     'ProfessionalServices': ProfessionalServices, 'totalHours':totalHours, 
                     'totalHoursRequested': totalHoursRequested, 'hours': Hours

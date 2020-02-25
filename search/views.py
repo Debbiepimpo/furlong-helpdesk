@@ -7,10 +7,11 @@ from ProfessionalServices.models import PServices
 
 def do_search(request):
     """View that returns keyword searchs and renders search html with the results"""
+    print(request.GET['Q'])
     ProfessionalServices = PServices.objects.filter(
-        name__icontains=request.GET['q'])
+        name__icontains=request.GET['Q'])
     hours = Hour.objects.filter(
-        name__icontains=request.GET['q'])
+        name__icontains=request.GET['Q'])
     ProfessionalServices = ProfessionalServices.order_by("order")
     hours = hours.order_by("order")
     total = hours.count() + ProfessionalServices.count()

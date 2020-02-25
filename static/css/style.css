@@ -1,8 +1,5 @@
 /*------------------------ Main styles ----------------------------------*/
 
-.center {
-    text-align: center;
-}
 
 html,
 body {
@@ -31,6 +28,10 @@ footer a {
 footer a:hover {
     color: #f6303e;
     text-decoration: none;
+}
+
+.center {
+    text-align: center;
 }
 
 .copyright-footer {
@@ -142,11 +143,18 @@ input[type="search"] {
     border-radius: 0;
 }
 
-.btn-colored,
+.btn-colored {
+    color: #512d6d;
+    background-color: #f6303eb0;
+    border-color: #f6303eb0;
+    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
+}
+
 .btn-color {
     color: #512d6d;
-    background-color: #f6303e;
-    border-color: #f6303e;
+    background-color: #f6303e40;
+    border-color: #f6303e40;
+    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
 }
 
 .btn-colored {
@@ -191,16 +199,18 @@ input[type="search"] {
 .display-login,
 .display-ShoppingBag,
 .display-search,
-.display-4 {
+.display-password,
+.display-bookings {
     font-size: 64px;
     font-weight: 400;
     line-height: 1.2;
 }
 
+.display-password,
 .display-contact,
 .display-signUp,
 .display-login,
-.display-4 {
+.display-bookings {
     color: white;
 }
 
@@ -238,7 +248,7 @@ input[type="search"] {
     background-image: url("/static/img/kids.jpg");
 }
 
-.parallax-hours {
+.parallax-bookings {
     background-image: url("/static/img/hour-management.jpeg");
 }
 
@@ -267,6 +277,10 @@ input[type="search"] {
     background-image: url("/static/img/search-2.jpg");
 }
 
+.parallax-password {
+    background-image: url("/static/img/password.jpg");
+}
+
 
 /*------------------------ Index ----------------------------------------*/
 
@@ -276,7 +290,13 @@ input[type="search"] {
     font-weight: 400;
 }
 
+.index-slogan {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
 
+.index-slogan h1,
 .index-title h1 {
     font-size: 48px;
     font-weight: 400;
@@ -338,16 +358,6 @@ input[type="search"] {
     border-radius: 25px;
 }
 
-.progress {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    height: 1.5rem;
-    overflow: hidden;
-    font-size: 0.703125rem;
-    background-color: #e9ecef;
-}
-
 .card-link {
     float: right;
 }
@@ -392,6 +402,32 @@ input[type="search"] {
 }
 
 
+/*------------------------ Progress ---------------------------------------*/
+
+.progress {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 1.5rem;
+    overflow: hidden;
+    font-size: 0.703125rem;
+    background-color: #e9ecef;
+}
+
+.progress-available,
+.progress-approved {
+    background-color: #c4ffc4;
+}
+
+.progress-rejected {
+    background-color: #ffb4b3;
+}
+
+.progress-pending {
+    background-color: #ffff9e;
+}
+
+
 /*------------------------ Search ---------------------------------------*/
 
 .search-results,
@@ -428,16 +464,16 @@ input[type="search"] {
     padding-bottom: 20px;
 }
 
-.button-spacing {
-    margin-left: 1px;
+.link-PS:hover {
+    background-color: #f6303e40;
 }
 
-.edit-button {
-    margin-right: 30px;
+.link-Hrs:hover {
+    background-color: #d3b6ea40;
 }
 
-.delete-button {
-    color: red;
+.status-color {
+    color: #f6303ec7;
 }
 
 /*--- List of Hours and PS ---*/
@@ -600,7 +636,7 @@ input[type="search"] {
 
 
 @media (max-width:364px) {
-    .display-4 {
+    .display-bookings {
         font-size: 59px;
     }
 

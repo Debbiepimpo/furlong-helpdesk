@@ -1,4 +1,20 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_heading %} Profile {% endblock %} {% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_heading %} Profile {% endblock %} 
+{% block head_js %}
+<!-- This script is to help the user to stay in the tab desire and use the pagination
+without going back to the tab the user was clicked at the beginning. -->
+<script>
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#profileTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
+{% endblock %} 
+{% block content %}
 
 <section class="parallax parallax-profile">
   <div class="container main-message">
@@ -11,8 +27,8 @@
 <section class="container detail-padding">
     <p class="profile-title"><strong> You can have the control of Professional Service packages bought, the hours you used and how many left.</strong></p>
     </br>
-    <!--   Bootswatch tabs to display hours and ProfessionalServices    -->
-    <ul class="nav nav-tabs">
+    <!-- Tabs to display hours and ProfessionalServices    -->
+    <ul class="nav nav-tabs" id="profileTab">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#ProfessionalServices" aria-hidden="true">Profesional Services ({{ totalHours }})</a>
         </li>
@@ -28,57 +44,84 @@
             </div>
         </li>
     </ul>
+    
     <div id="tabContent" class="tab-content">
         <div class="tab-pane fade show active" id="ProfessionalServices">
             {% if ProfessionalServices %} {% for ProfService in ProfessionalServices %}
-            <div class="card mb-1">
-                <h3 class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="far fa-clock"> {{ProfService.totalHours }} h.</i></span></h3>
-                <div class="progress">
-                  {% if ProfService.status == "Available" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-                  {% else %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Current Unavailable </div>
-                  {% endif %}
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{ProfService.description }}</p>
-                </div>
-            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item link-PS card-text"><a href="{% url 'ProfService_detail' ProfService.id %}">
+                  <h3>{{ProfService.name|truncatewords:"10"}}</h3><span><i class="far fa-clock"> {{ProfService.totalHours }} h.</i>
+              </span><span><p class="card-text">{{ProfService.description|truncatewords:"10"}}</p></span></a></li>
+            </ul>
 
             {% endfor %} {% else %}
             <div class="card mb-1">
                 <h3 class="card-header">Oops! You haven't bought any Professional Services yet!</h3>
             </div>
             {% endif %}
+            <div class="pagination">
+              <span class="step-links">
+                  {% if ProfessionalServices.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
+                  {% endif %}
+          
+                  <span class="current">
+                      Page {{ ProfessionalServices.number }} of {{ ProfessionalServices.paginator.num_pages }}.
+                  </span> {% if ProfessionalServices.has_next %}
+              <a href="?page={{ ProfessionalServices.next_page_number }}">next</a>
+              <a href="?page={{ ProfessionalServices.paginator.num_pages }}">last &raquo;</a> {% endif %}
+              </span>
+            </div>
         </div>
         <div class="tab-pane fade" id="hours">
             {% if hours %} {% for hour in hours %}
-            <div class="card mb-1">
-                <h3 class="card-header">{{hour.requested_date|truncatewords:"5"}}</h3>
-                <div class="progress">
-                  {% if hour.status == "Approved" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
-                  {% elif hour.status == "Rejected" %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Rejected </div>
-                  {% else %}
-                  <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Pending </div>
-                  {% endif %}
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{hour.comments}}</p>
-                </div>
-                <div class="row card-footer text-muted">
-                    <div class="col-sm profile-buttons">
-                        <a class="btn btn-color buttons-right" href="{% url 'view_hours' %}" role="button">View</a>
-                    </div>
-                </div>
-            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item link-Hrs card-text"><a href="{% url 'view_hours' %}">
+                <h3>{{hour.requested_date|truncatewords:"10"}}</h3><span class="status-color">
+                {% if hour.status == "Approved" %}
+                <i class="far fa-calendar-check"></i>
+                {% elif hour.status == "Rejected" %}
+                <i class="fas fa-ban"></i>
+                {% else %}
+                <i class="fas fa-spinner"></i>{% endif %} {{hour.status }}
+              </span><p class="card-text">{{hour.comments}}</p></a></li>
+            </ul>
+            
             {% endfor %} {% else %}
             <div class="card mb-1">
                 <h3 class="card-header">Oops! You haven't requested any hours yet!</h3>
             </div>
             {% endif %}
+            <div class="pagination">
+              <span class="step-links">
+                  {% if hours.has_previous %}
+                      <a href="?pageH=1">&laquo; first</a>
+                      <a href="?pageH={{ hour.previous_page_number }}">previous</a>
+                  {% endif %}
+          
+                  <span class="current">
+                      Page {{ hours.number }} of {{ hours.paginator.num_pages }}.
+                  </span> {% if hours.has_next %}
+              <a href="?pageh={{ hours.next_page_number }}">next</a>
+              <a href="?pageh={{ hours.paginator.num_pages }}">last &raquo;</a> {% endif %}
+              </span>
+            </div>
         </div>
     </div>
+    
+     <!------ Message displaying in a div ------>
+
+    {% if messages %} {% for message in messages %}
+    <div class="center">
+        <div class="{{ message.tags }}">
+            <div>
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} {% block content %} {% endblock %}
+
 </section>
 {% endblock %}

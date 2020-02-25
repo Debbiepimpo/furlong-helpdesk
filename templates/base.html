@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-    <!--===== Title =====-->
+    <!-- Title -->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' type='image/x-icon' %}">
     <title>{% block page_title %} {% endblock %}</title>
     
@@ -20,7 +20,7 @@
 </head>
 
 <body class="d-flex flex-column">
-    <!-- Naviagtion bar -->
+    <!-- Navigation bar -->
     <div class="navbar flex-shrink-0">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <a class="navbar navbar-brand logo" href="{% url 'index' %}" aria-label="home"></a>
@@ -39,7 +39,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'view_ProfessionalServices' %}"><i class="fas fa-headset"></i> Professional Services</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-clock"></i> Hours</a>
+                            <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-calendar-alt"></i> Calendar</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> Profile</a>
                             <div class="dropdown-divider"></div>
@@ -61,7 +61,7 @@
                             </a>
                         </li>
                     </ul>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="Q" aria-label="search">
                     <button class="btn btn-colored my-2 my-sm-0" type="submit"><strong><i class="fas fa-search"></i></strong></button>
                 </form>
                 {% else %}
@@ -73,7 +73,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'view_ProfessionalServices' %}"><i class="fas fa-headset"></i>  Professional Services</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-clock"></i>  Hours</a>
+                        <a class="dropdown-item" href="{% url 'view_hours' %}"><i class="fas fa-calendar-alt"></i>  Calendar</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'registration' %}"><i class="fas fa-user-plus"></i>  Register</a>
                         <div class="dropdown-divider"></div>
@@ -86,7 +86,7 @@
                 </li>
                 </ul>
                 <form action="{% url 'search' %}" method="GET" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="Q" aria-label="search">
                     <button class="btn btn-colored my-2 my-sm-0" type="submit"><strong><i class="fas fa-search"></i></strong></button>
                 </form>
                 {% endif %}
@@ -95,7 +95,7 @@
         </nav>
     </div>
 
-    <!--===== Message displaying div =====-->
+    <!------ Message displaying in a div ------>
 
     {% if messages %} {% for message in messages %}
     <div class="center">
@@ -108,13 +108,13 @@
     </div>
     {% endif %} {% block content %} {% endblock %}
 
-    <!--===== Footer =====-->
+    <!------ Footer ------>
 
     <footer class="footer mt-auto">
         <div class="row">
             <div class="col-6">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"> <a rel="noopener" target="_blank" href="https://www.furlongsolutions.com/"><i class="fas fa-globe-europe hvr-grow aria-label="website"></i></a></li>
+                    <li class="breadcrumb-item"> <a rel="noopener" target="_blank" href="https://www.furlongsolutions.com/"><i class="fas fa-globe-europe hvr-grow" aria-label="website"></i></a></li>
                     <li class="breadcrumb-item"> <a rel="noopener" target="_blank" href="https://twitter.com/FurlongSchools"><i class="fab fa-twitter hvr-grow" aria-label="twitter"></i></a></li>
                     <li class="breadcrumb-item"> <a rel="noopener" target="_blank" href="https://www.linkedin.com/company/furlong/"><i class="fab fa-linkedin-in hvr-grow" aria-label="linkedin"></i></a></li>
                     <li class="breadcrumb-item"> <a rel="noopener" target="_blank" href="https://www.facebook.com/pages/Furlong-Business-Solutions/214391145386117"><i class="fab fa-facebook-f hvr-grow" aria-label="facebook"></i></a></li>
@@ -129,7 +129,8 @@
 
     <!-- Latest compiled and minified JavaScript -->
     
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {% block onloadmodal %} {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

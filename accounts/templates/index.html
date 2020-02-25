@@ -33,13 +33,13 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="index-icon">
-                    <a href="{% url 'view_hours' %}" aria-label="hours"> <i class="fas fa-clock"></i></a>
+                    <a href="{% url 'view_hours' %}" aria-label="hours"> <i class="fas fa-calendar-alt"></i></a>
                 </div>
                 <div class="index-sub-header">
-                    <strong class="display-title">Available hours</strong>
+                    <strong class="display-title">Calendar</strong>
                 </div>
                 <div class="index-sub-text display-title">
-                    Manage the available hours you have.
+                    Manage the hours you booked into the caledar.
                 </div>
             </div>
             {% if user.is_authenticated %}
@@ -82,7 +82,7 @@
         </div>
     </div>
     
-     <div class="center index-title">
+     <div class="center index-slogan">
         <h1 class="display-title"> Take control of the support we provide. </h1>
     </div>
     

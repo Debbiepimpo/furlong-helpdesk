@@ -76,7 +76,7 @@ def view_ProfessionalServices(request):
 def view_completed_ProfessionalServices(request):
     """View to display completed ProfessionalServices"""
     ProfessionalServices = PServices.objects.all().order_by('-id').filter(status='Current Unavailable')
-    paginator = Paginator(ProfessionalServices, 5)  # Show 5 ProfessionalServices per page
+    paginator = Paginator(ProfessionalServices, 6)  # Show 6 ProfessionalServices per page
 
     page = request.GET.get('page')
     try:
@@ -91,19 +91,10 @@ def view_completed_ProfessionalServices(request):
 def ProfService_detail(request, pk):
     """
     Create a view that returns a single
-    ProfService object based on the ProfService ID (pk) and
-    render it to the ProfService_detail.html template
-    or return 404 error if object is not found.
+    ProfService object details or if is not found
+    return 404 error if object is not found.
     """
     ProfService = get_object_or_404(PServices, pk=pk)
-    if request.session.get('ProfService'):
-        ProfServiceId = request.session.get('ProfService')
-
-        if ProfServiceId != ProfService.pk:
-            request.session['ProfService'] = ProfService.pk
-            ProfService.save()
-    else:
-        request.session['ProfService'] = ProfService.pk
-        ProfService.save()
-    return render(request, "ProfService_detail.html")
+    
+    return render(request, "ProfService_detail.html",  {"ProfService": ProfService})
 

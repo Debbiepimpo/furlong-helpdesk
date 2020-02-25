@@ -25,11 +25,14 @@ def checkout(request):
                 total = 0
                 total += quantity * ProfService.udPrice
                 order = order_form.save(commit=False)
-                order.date = timezone.now()
-                order.remainingHours = ProfService.totalHours
-                order.ProfService = ProfService
-                order.user = request.user
-                order.save()
+                for x in range(0,quantity):
+                    print(x)
+                    order.pk = None
+                    order.date = timezone.now()
+                    order.remainingHours = ProfService.totalHours
+                    order.ProfService = ProfService
+                    order.user = request.user
+                    order.save()
 
             try:
                 customer = stripe.Charge.create(

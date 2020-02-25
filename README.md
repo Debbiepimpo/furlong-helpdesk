@@ -1,6 +1,8 @@
 # Furlong Helpdesk
 
-I have the pleasure of introducing my FullStack E-commerce Project. Furlong Helpdesk was developed with Python, Django, postgresSql and Stripe. The purpose of this project is help the clients take the control of how many hours they want to buy whose purpose is the training on SchoolBase app. This hours can be bought by packages or individual hours and once they have been bought hours, clients can request bookings to Furlong for this training using the hours they bought. 
+I have the pleasure of introducing my FullStack E-commerce Project. Furlong Helpdesk was developed with Python, Django, postgreSQL and Stripe as main tools.
+
+The purpose of this project is help the clients take the control of how many hours they want to buy whose purpose is the training on SchoolBase app. This hours can be bought by packages or individual hours and once the clients have been bought hours, they can request bookings to Furlong for this training using the hours they bought. 
 
 When a client request a slot of training, it needs to be aproved by the furlong admin of the website and the status of that hour will change on the profile and the calendar. If the slot requested is rejected the hours will be added by the admin to the hours available and can give a reason to the client with a comment. This makes the client having a control of how many training hours has left.  
 
@@ -16,8 +18,8 @@ Furlong Helpdesk can be accessed on: [Furlong Helpdesk](https://furlong-mileston
 * The main goal was to develop a user-friendly experience on this e-commerce website.
 * Not registered users can not access to the main areas such as profile, request a training hour or either the caalendar schedule. However, if they create an account, they will have full access to it.
 * All input elements are clearly labeled, and provide placeholders and default values whenever relevant
-* All events on the website are complemented by alerts such as when a paymentt is successful, denied or card details are wrong. 
-Also  when the user's Cart is empty.
+* All events on the website are complemented by alerts such as when a payment is successful, denied or card details are wrong. 
+Even  when the user's Cart is empty.
 * When a user is logged in a "Log Out" link is displayed and vice-versa.
 * The site should be responsive and work on all browsers.   
 
@@ -28,9 +30,9 @@ Also  when the user's Cart is empty.
 
 2. [Homepage - Mobile wireframe]()
 
-3. [Profesional Services - Desktop wireframe]()
+3. [Professional Services - Desktop wireframe]()
 
-4. [Profesional Services - Mobile wireframe]()
+4. [Professional Services - Mobile wireframe]()
 
 5. [Hours - Desktop Wireframe]()
 
@@ -43,10 +45,10 @@ Also  when the user's Cart is empty.
   
 ## User stories
 
-1. **As a Customer, I want to have a control of Professional Services hours bought.** Done, the entire website is focus on the management of this user needs.
-2. **I would like to request training hours when I can, even out office ours** With the hours available you can request hours at anytime filling the form for that.
-3. **I want to have full control of my spend of hours and how many I haven't use yet** On your profile you can check that easily.
-4. **How I can check my hours requested and the days I booked them if I forgot?** Easy, you can go to Hours, and see them into the calendar.
+1. **"As a Customer, I want to have a control of Professional Services hours bought."** Done, the entire website is focus on the management of this user needs.
+2. **"I would like to request training hours when I can, even out of office hours."** With the hours available you can request hours at anytime filling the form for that.
+3. **"I want to have full control of my spend of hours and how many I haven't use yet."** On your profile you can check that easily.
+4. **"How I can check my hours requested and the days I booked them if I forgot it?"** Easy, you can go to Hours, and see them into the calendar.
 
 
 ## Features
@@ -57,14 +59,14 @@ Also  when the user's Cart is empty.
   - Navbar contains:
       - Site logo for going straight forward to homepage.
       - Home button to go back to homepage.
-      - Menu dropdown to enable users to navigate the site, visible in any html page.
+      - Menu dropdown to enable users to navigate the site, visible in any sito of the website.
       - Login button for existing users to log back in.
       - Register button for new users to register.
         Once the user has logged in, login and register buttons will disappear.
       - Logout button to end user session.
       - Cart button only visible when user is Login.
       - Search bar for users to search for packages avilables and hours requested.
-      - 
+      
   - Footer contains:
       - Social media buttons which currently link homepage of the sites however would link to this websites social.
       - Copyright.
@@ -73,17 +75,17 @@ Also  when the user's Cart is empty.
   
   - Menu from navbar splited in 4 icons which link to the different parts of the site and a little explanation of what is each for.
 
-* **Profesional Services page.**
+* **Professional Services page.**
   
   - Here you can find the different packages of hours individually priced by Furlong and with the status of the package (available or Current unavailable). User can only buy the Available packages.
 
-* **Hours page.**
+* **Calendar page.**
   
-  - Here you can find the training slots (hours) displayed into a calendar wher you can see the status of the slot required (Pending, accepted and rejected).
+  - Here you can find the bookings (hours requested) displayed into a calendar wher you can see the status of the slot required (Pending, Accepted and Rejected).
 
 * **Profile page.**
 
-  - Users can view all the Profesional services packages bought with the total hours available, the hours requested and total hours requested.
+  - Users can view all the Professional services packages bought with the total hours available, the hours requested and total hours requested.
 
 * **Contact us.**
   
@@ -155,8 +157,7 @@ back to Cloud9 at AWS and make the changes there.
 
 ### Automated tests
 * I used few automated tests which can be found with the name test.py files int applications folders.
-* [Travis](https://travis-ci.org/) to test my test.py files.
-[![Build Status](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4.svg?branch=master)](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4)
+* [Travis](https://travis-ci.org/) to test my test.py files.[![Build Status](https://travis-ci.org/Debbiepimpo/furlong-helpdesk.svg?branch=master)](https://travis-ci.org/Debbiepimpo/furlong-helpdesk)
 
 ### Manual Testing
 
@@ -174,26 +175,47 @@ I have tested the website on:
 
 #### Manual tests in detail
 
-- Profesional Services application
+- **Professional Services application**
 1. If click on add to cart, number on cart icon will reflected and encrease acordingly.
-2. If click on view, page will redirect to a view in depth the Profesional service package details.
+2. If click on view, page will redirect to a view in depth the Professional service package details.
 3. The @login_required was added across the site to only allow registered users access.
  
-- Hours application
+- **Calendar application**
 1. If the admin change status of the slot required, the colour and the status will be reflected into the calendar.
 
-- Cart application
-1. A user can see all Profesional Services added to cart's user logged.
+- **Cart application**
+1. A user can see all Professional Services added to cart's user logged.
 2. Delete button deletes it from the cart if is only one package, Remove button is for decrease the number of packages by one already added to cart.
 
-- Checkout application
+- **Checkout application**
 1. Checked customer data and paymenet forms are correctly validated.
 2. Error message will be displayed if the payment details are incorrect.
 3. Success message will be provided if payment is successful.
 4. Professional Service will be reflected and the total hours available will be incremented at profile page on successful payment.
 
-- Account application
-1.Check 
+- **Account application**
+    - Registration
+        1. Navigate to the registration page.
+        2. Enter the email address of an already registered user and a new username.
+        3. Ensure that an error message appears, saying that email is already registered.
+        4. Enter a unique email address and the username of an already registered user.
+        5. Ensure that an error message appears saying that a user with that username already exists.
+    
+    - Login
+        1. Navigate to the login page.
+        2. Login as each registered user in turn, entering correct username and password combinations.
+        3. Ensure that the users are logged in successfuly.
+        4. Attempt to log in as each registered user, entering incorrect username and password combinations.
+        5. Ensure that an error message displays.
+    
+    - Password Reset
+        1. Click on the password reset link on the login page.
+        2. Ensure that a page appears inviting me to enter my email address.
+        3. Enter my email address in the box and click the Reset Password button.
+        4. Ensure that a page appears telling me that an email has been sent.
+        5. Check my inbox for the email.
+        6. Click on the link in the email and ensure that a page appears invting me to enter a new password.
+        8. Login with the new password to ensure that it has been changed successfully.
 
 
 ## Deployment
@@ -246,17 +268,19 @@ For making Furlong Helpdesk work in Heroku, I deployed the app as follows:
 
 1. I create a new app on Heroku and name it Furlong-milestone.
 2. Enter the environment variables in the Heroku config vars:
-  | Key | Value |
-   --- | ---
-  DATABASE_URL | `<postgres_url>` 
-  SECRET_KEY | `<my_secret_key>`
-  STRIPE_PUBLISHABLE | `<my_stripe_publishable>`
-  STRIPE_SECRET | `<my_stripe_secret>`
-  DEFAULT_FROM_EMAIL | `<my_from_email>`
-  SERVER_EMAIL | `<my_server_email>`
-  EMAIL_HOST | `<my_email_host>`
-  EMAIL_HOST_USER | `<my_host_user>`
-  EMAIL_HOST_PASSWORD | `<my_host_password>`
+
+| Key                 | Value                     |
+|---------------------|---------------------------|
+| DATABASE_URL        | `<postgres_url>`          |
+| SECRET_KEY          | `<my_secret_key>`         |
+| STRIPE_PUBLISHABLE  | `<my_stripe_publishable>` |
+| STRIPE_SECRET       | `<my_stripe_secret>`      |
+| DEFAULT_FROM_EMAIL  | `<my_from_email>`         |
+| SERVER_EMAIL        | `<my_server_email>`       |
+| EMAIL_HOST          | `<my_email_host>`         |
+| EMAIL_HOST_USER     | `<my_host_user>`          |
+| EMAIL_HOST_PASSWORD | `<my_host_password>`      |
+
 
 3. Create the `Procfile` file for this project.
 4. Create the `requirements.txt` file for this project.
@@ -272,7 +296,7 @@ For making Furlong Helpdesk work in Heroku, I deployed the app as follows:
   
 ## Acknowledgements
 
-*  I have being inspired for this project from a combination of projects from Slack group 'Peer-code-review', the idea of Unicorn attractor helpped too and the final idea was inspired by Furlong which is the company I'm working while I'm developing te project.
+* I have being inspired for this project from a combination of projects from Slack group 'Peer-code-review', the idea of Unicorn attractor helped too and the final idea was inspired by Furlong which is the company I'm working while I'm developing te project.
 * The Slack community have been great on giving me advice for some features i've implemented on my project.
 * The tutors at code institute have also been helpful.
 * [W3Schools](https://www.w3schools.com/) - I used as a guide for some doubts while i was developing the project.

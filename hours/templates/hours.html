@@ -1,54 +1,41 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% load static from staticfiles %} {% block page_heading %} Hours {% endblock %}}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% load static from staticfiles %} {% block page_heading %} Hours {% endblock %}{% block head_js %}
+
+<link rel="stylesheet" href="../static/css/booking-calendar.css" />
+<script src="../static/js/booking-calendar.js"></script>
+<script type="text/javascript" >
+
+  $.ajax({
+    url: 'view_bookCalendarEvents',
+    type: 'GET',
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(responseData) {
+      $('#bookingCalendar').bookCalendar({
+        calendarEvents: responseData,
+        format: 'mm/dd/yyyy',
+        titleFormat: 'MM yyyy',
+        eventHeaderFormat: 'MM d, yyyy',
+        canAddEvent: false
+      });
+    }
+  });
+
+</script>
+
+{% endblock %}
 {% block content %}
-<!--   Main page image   -->
-<section class="parallax parallax-hours">
+<section class="parallax parallax-bookings">
   <div class="container main-message">
     <div class="jumbotron">
-      <h1 class="display-4">Manage the available hours you have.</h1>
+      <h1 class="display-bookings">Manage your bookings.</h1>
     </div>
   </div>
 </section>
 
 
 <section class="container detail-padding">
-  <!--   Professional Services packages  -->
+  <div id="bookingCalendar"></div>
 
-  {% for hour in hours %}
-      <!-- Collapse buttons -->
-      <div>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{hour.id}}" aria-expanded="false" aria-controls="collapseExample">
-          Button with data-target
-        </button>
-        
-        <div class="collapse" id="collapseExample{{hour.id}}">
-          <div class="mt-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-            keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
-        </div>
-      </div>
-      <!-- / Collapse buttons -->
-      
-      <!-- Collapsible element -->
-      <!-- / Collapsible element -->
-  {% endfor %}
-
-  <!--   Pagination Professional Services   -->
-
-  <div class="pagination">
-    <span class="step-links">
-        {% if hours.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ hours.number }} of {{ hours.paginator.num_pages }}.
-        </span> {% if hours.has_next %}
-    <a href="?page={{ hours.next_page_number }}">next</a>
-    <a href="?page={{ hours.paginator.num_pages }}">last &raquo;</a> {% endif %}
-    </span>
-  </div>
 </section>
+
 {% endblock %}
