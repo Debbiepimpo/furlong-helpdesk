@@ -124,7 +124,7 @@ def profile(request):
     into the profile section, it will show 6 Professional Services
     per page.
     """
-    paginatorProfService = Paginator(ProfessionalServices, 2) 
+    paginatorProfService = Paginator(ProfessionalServices, 6) 
 
     page = request.GET.get('page')
     try:
@@ -140,7 +140,7 @@ def profile(request):
     it will show 6 Hours
     per page too.
     """
-    paginatorHours = Paginator(Hours, 5) 
+    paginatorHours = Paginator(Hours, 6) 
 
     page = request.GET.get('pageh')
     try:
