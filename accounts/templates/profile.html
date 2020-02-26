@@ -17,16 +17,16 @@ $(document).ready(function(){
 {% block content %}
 <!------ Message displaying in a div ------>
     
-    {% if messages %} {% for message in messages %}
-    <div class="center">
-        <div class="{{ message.tags }}">
-            <div>
-                {{ message }}
-            </div>
+{% if messages %} {% for message in messages %}
+<div class="center">
+    <div class="{{ message.tags }}">
+        <div>
+            {{ message }}
         </div>
-        {% endfor %}
     </div>
-    {% endif %} 
+    {% endfor %}
+</div>
+{% endif %} 
 
 <section class="parallax parallax-profile">
   <div class="container main-message">
