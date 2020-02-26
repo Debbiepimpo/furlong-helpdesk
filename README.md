@@ -157,7 +157,6 @@ back to Cloud9 at AWS and make the changes there.
 
 ### Automated tests
 * I used few automated tests which can be found with the name test.py files int applications folders.
-* [Travis](https://travis-ci.org/) to test my test.py files. [![Build Status](https://travis-ci.org/Debbiepimpo/furlong-helpdesk.svg?branch=master)](https://travis-ci.org/Debbiepimpo/furlong-helpdesk)
 
 ### Manual Testing
 
