@@ -44,7 +44,7 @@ def checkout(request):
             except stripe.error.CardError:
                 messages.error(
                     request,
-                    "Your card was declined!",
+                    "Your card was declined.",
                     extra_tags="alert-danger")
 
             if customer.paid:
@@ -69,7 +69,7 @@ def checkout(request):
         else:
             messages.error(
                 request,
-                "We were unable to take a payment with that card!",
+                "We were unable to take a payment.",
                 extra_tags="alert-primary")
             print (messages.error)
     else:

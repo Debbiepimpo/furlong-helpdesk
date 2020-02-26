@@ -11,6 +11,14 @@
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}{% block content %}
 
+<section class="parallax parallax-checkout">
+  <div class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-checkout"> <br ><br >Checkout.</h1>
+    </div>
+  </div>
+</section>
+
 <section class="container detail-padding">
     <div class="row">
         <div class="profile-submit-buttons">
@@ -45,24 +53,24 @@
 
     {% if cart_items %}
     <table class="table table-hover">
-        <thead class="table-active">
+        <thead class="table-active table-color">
             <tr>
                 <th scope="col">Professional Service Name</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">Hours</th>
+                <th scope="col">Details</th>
+                <th scope="col">Price</th>
             </tr>
         </thead>
         <tbody>
             {% for item in cart_items %}
             <tr class="">
                 <th scope="row">{{ item.ProfService.name }}</th>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ item.ProfService.totalHours }}</td>
+                <td>{{ item.ProfService.description }}</td>
+                <td> £ {{ item.ProfService.udPrice }}</td>
             </tr>
             {% endfor %}
-            <tr class="table-dark">
+            <tr class="table table-colored">
                 <th scope="row"></th>
                 <td></td>
                 <td></td>

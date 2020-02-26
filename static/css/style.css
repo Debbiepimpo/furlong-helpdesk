@@ -1,9 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap);
+
 /*------------------------ Main styles ----------------------------------*/
 
 
 html,
 body {
-    font-family: Verdana;
+    font-family: 'Montserrat', Sans-serif;
     height: 100%!important;
 }
 
@@ -198,6 +200,7 @@ input[type="search"] {
 .display-signUp,
 .display-login,
 .display-ShoppingBag,
+.display-chekout,
 .display-search,
 .display-password,
 .display-bookings {
@@ -210,13 +213,15 @@ input[type="search"] {
 .display-contact,
 .display-signUp,
 .display-login,
-.display-bookings {
+.display-bookings,
+.display-checkout {
     color: white;
 }
 
 .display-signUp,
 .display-login,
-.display-contact {
+.display-contact,
+.display-checkout {
     font-weight: 500;
 }
 
@@ -273,6 +278,10 @@ input[type="search"] {
     background-image: url("/static/img/shop-bag.jpg");
 }
 
+.parallax-checkout {
+    background-image: url("/static/img/checkout.jpg");
+}
+
 .parallax-search {
     background-image: url("/static/img/search-2.jpg");
 }
@@ -280,6 +289,7 @@ input[type="search"] {
 .parallax-password {
     background-image: url("/static/img/password.jpg");
 }
+
 
 
 /*------------------------ Index ----------------------------------------*/
@@ -476,9 +486,18 @@ input[type="search"] {
     color: #f6303ec7;
 }
 
-/*--- List of Hours and PS ---*/
 
+/*------------------------ Checkout Ticket ------------------------------*/
 
+.table-color {
+    background-color: #d3b6eac4;
+}
+
+.table-colored {
+    background-color: #512d6dd1;
+    color: #fff;
+    font-size: medium;
+}    
 
 /*------------------------ Checkout  ------------------------------------*/
 
@@ -502,7 +521,7 @@ input[type="search"] {
 }
 
 
-/*------------------------ Media ----------------------------------------*/
+/*-------------------------- Media ---------------------------------------*/
 
 @media (min-width:992px) {
     .navbar {

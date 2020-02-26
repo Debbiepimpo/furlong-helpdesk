@@ -15,6 +15,18 @@ $(document).ready(function(){
 </script>
 {% endblock %} 
 {% block content %}
+<!------ Message displaying in a div ------>
+    
+    {% if messages %} {% for message in messages %}
+    <div class="center">
+        <div class="{{ message.tags }}">
+            <div>
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} 
 
 <section class="parallax parallax-profile">
   <div class="container main-message">
@@ -109,19 +121,6 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-    
-     <!------ Message displaying in a div ------>
-
-    {% if messages %} {% for message in messages %}
-    <div class="center">
-        <div class="{{ message.tags }}">
-            <div>
-                {{ message }}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %} {% block content %} {% endblock %}
 
 </section>
 {% endblock %}
