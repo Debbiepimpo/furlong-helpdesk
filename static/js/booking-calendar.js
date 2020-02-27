@@ -50,9 +50,9 @@
                 validParts: /dd?|DD?|mm?|MM?|yy(?:yy)?/g,
                 dates: {
                     en: {
-                        days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                        daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                        daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+                        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"],
+                        daysShort: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat","Sun"],
+                        daysMin: ["Mo", "Tu", "We", "Th", "Fr", "Sa","Su"],
                         months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                         monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                     }
@@ -70,7 +70,7 @@
             }
             console.log(_.options)
 
-            _.$cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            _.$cal_days_labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'];
 
             // these are human-readable month name labels, in order
             _.$cal_months_labels = ['January', 'February', 'March', 'April',
@@ -130,7 +130,7 @@
 
         if (!$(_.$calendar).hasClass('calendar-initialized')) {
 
-            $(_.$calendar).addClass('booking-calendar calendar-initialized');
+            $(_.$calendar).addClass('booking-calendar event-hide calendar-initialized');
 
             _.buildCalendar('all');
         }
@@ -170,7 +170,7 @@
                 mainHTML += '<span id="eventAddButton" title="Add event">ADD EVENT</span>';
             }
             if(_.options.eventListToggler) {
-                mainHTML += '<span id="eventListToggler" title="Close event list"><button class="icon-button"><span class="chevron-arrow-right"></span></button></span>';
+                mainHTML += '<span id="eventListToggler" title="Close event list"><a class="chevron-arrow-event"><i class="fas fa-chevron-right chevron-color"></i></a></span>';
             }
             _.$mainHTML = mainHTML;
         }
@@ -185,7 +185,7 @@
             }
             sidebarHTML += '</ul>';
             if(_.options.sidebarToggler) {
-                sidebarHTML += '<span id="sidebarToggler" title="Close sidebar"><button class="icon-button"><span class="bars"></span></button></span>';
+                sidebarHTML += '<span id="sidebarToggler" title="Close sidebar"><a class="bars"><i class="fas fa-bars bars-color"></i></a></span>';
             }
             _.$sidebarHTML = sidebarHTML;
         }
@@ -254,7 +254,7 @@
                     }
                 };
                 if(!hasEventToday) {
-                    eventHTML += '<p>No event for this day.. so take a rest! :)</p>';
+                    eventHTML += '<p>No training booked for this day! :)</p>';
                 }
                 eventHTML += '</div>';
                 _.$eventHTML = eventHTML;
@@ -371,35 +371,35 @@
 
         if(_.options.sidebarToggler) {
             $('#sidebarToggler')
-               .off('click.evocalendar')
-               .on('click.evocalendar', _.toggleSidebar);
+               .off('click.bookcalendar')
+               .on('click.bookcalendar', _.toggleSidebar);
         }
         if(_.options.eventListToggler) {
             $('#eventListToggler')
-               .off('click.evocalendar')
-               .on('click.evocalendar', _.toggleEventList);
+               .off('click.bookcalendar')
+               .on('click.bookcalendar', _.toggleEventList);
         }
         if(_.options.canAddEvent) {
             $('#eventAddButton')
-               .off('click.evocalendar')
-               .on('click.evocalendar', _.options.onAddEvent);
+               .off('click.bookcalendar')
+               .on('click.bookcalendar', _.options.onAddEvent);
         }
 
 
         $('[date-val]')
-           .off('click.evocalendar')
-           .on('click.evocalendar', _.selectDate)
-           .on('click.evocalendar', _.options.onSelectDate);
+           .off('click.bookcalendar')
+           .on('click.bookcalendar', _.selectDate)
+           .on('click.bookcalendar', _.options.onSelectDate);
 
         // set event listener for each month
         $('[month-val]')
-           .off('click.evocalendar')
-           .on('click.evocalendar', _.selectMonth);
+           .off('click.bookcalendar')
+           .on('click.bookcalendar', _.selectMonth);
 
         // set event listener for year
         $('[year-val]')
-           .off('click.evocalendar')
-           .on('click.evocalendar', _.selectYear);
+           .off('click.bookcalendar')
+           .on('click.bookcalendar', _.selectYear);
 
     };
 

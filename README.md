@@ -156,6 +156,7 @@ back to Cloud9 at AWS and make the changes there.
 * [Python validator](http://pep8online.com/) - For Python
 
 ### Automated tests
+
 * I used few automated tests which can be found with the name test.py files int applications folders.
 
 ### Manual Testing
@@ -167,7 +168,9 @@ I have tested the website on:
 * Mozilla Firefox
 
 ### Stripe payment testing
- I've being used the below information for testing the payments.
+
+ For testing the payments usin Stripe, I've being used the following information;
+ 
 - Card number - 4242424242424242
 - CVC - Any 3 digit number.
 - Expiry date - Any date in the future.
@@ -291,11 +294,12 @@ For making Furlong Helpdesk work in Heroku, I deployed the app as follows:
 
 ## Content
 - The images used on Furlong Helpdesk were sourced from Google Images usink keywords and uploading on my personal [Imgur](https://imgur.com/).
-- My favicon is [Furlong]() original logo. 
+- My favicon is [Furlong Business Solutions](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.furlongsolutions.com%2F&psig=AOvVaw2F38p5k8qL4NmcAtEhrNTn&ust=1582811004527000&source=images&cd=vfe&ved=0CAMQjB1qFwoTCPDqlc-s7-cCFQAAAAAdAAAAABAD) original logo.
+- My Calendar is a fully funcional calendar written in JS, I'v got the calendar from a website with good examples of JS Calendars and I chose this : [evo-calendar](https://www.jqueryscript.net/time-clock/event-calendar-evo.html). I made it work with the data I've desired to show on it and changed it to fit it according with my project.
   
 ## Acknowledgements
 
-* I have being inspired for this project from a combination of projects from Slack group 'Peer-code-review', the idea of Unicorn attractor helped too and the final idea was inspired by Furlong which is the company I'm working while I'm developing te project.
+* I have being inspired for this project from a combination of projects from Slack group, the idea of Unicorn attractor helped too and the final idea was inspired by Furlong which is the company I'm working while I'm developing te project.
 * The Slack community have been great on giving me advice for some features i've implemented on my project.
 * The tutors at code institute have also been helpful.
 * [W3Schools](https://www.w3schools.com/) - I used as a guide for some doubts while i was developing the project.

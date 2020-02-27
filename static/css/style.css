@@ -68,6 +68,10 @@ footer a:hover {
     padding-left: 10px;
 }
 
+.detail-padding {
+    margin: 0 10% 0 10%;
+    padding-bottom: 30px;
+}
 
 /*------------------------ Shopping bag icon ----------------------------*/
 
@@ -448,6 +452,18 @@ input[type="search"] {
 
 .search-title {
     text-decoration: underline;
+}
+
+
+/*------------------------ Calendar -------------------------------------*/
+
+.calendar-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.calendar-font {
+    font-weight: 500;
 }
 
 
