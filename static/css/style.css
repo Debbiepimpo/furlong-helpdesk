@@ -187,6 +187,12 @@ input[type="search"] {
     box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
 }
 
+.btn-success {
+    background-color: #bbd463 !important;
+    border-color: #bbd463!important;
+    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47) !important;
+}
+
 .btn-right { 
     float: right;
 }
@@ -395,10 +401,6 @@ input[type="search"] {
     border-left: 1px solid #d3b6ea;
 }
 
-.cart-item-height {
-    height: 95%;
-}
-
 .total {
     padding-top: 20px;
 }
@@ -423,6 +425,16 @@ input[type="search"] {
     float: right;
 }
 
+
+/*------------------------ Cart -------------------------------------------*/
+
+.cart-item-height {
+    height: 95%;
+}
+
+.mb-6 {
+    text-decoration: underline;
+}
 
 /*------------------------ Progress ---------------------------------------*/
 
