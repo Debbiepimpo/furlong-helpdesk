@@ -34,9 +34,9 @@ Even  when the user's Cart is empty.
 
 4. [Professional Services - Mobile wireframe]()
 
-5. [Hours - Desktop Wireframe]()
+5. [Calendar - Desktop Wireframe]()
 
-6. [Hours - Mobile Wireframe]()
+6. [Calendar - Mobile Wireframe]()
 
 7. [Profile - Desktop Wireframe]()
 

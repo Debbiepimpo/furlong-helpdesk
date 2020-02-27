@@ -156,6 +156,7 @@ input[type="search"] {
     box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
 }
 
+
 .btn-color {
     color: #512d6d;
     background-color: #f6303e40;
@@ -171,9 +172,12 @@ input[type="search"] {
     border-radius: 25px;
 }
 
-.btn-colored:hover,
-.btn-color:hover {
+.btn-colored:hover {
     color: #d3b6ea;
+}
+
+.btn-color:hover {
+    color: #9721f4;
 }
 
 .btn-color-fs {
@@ -233,7 +237,11 @@ input[type="search"] {
     color: #f6303e;
 }
 
-.display-professionalServices,
+.display-professionalServices {
+    color: #ff574b;
+    text-shadow: 2px 0px 7px #fff;
+}
+
 .display-title,
 .display-profile,
 .display-ShoppingBag {
