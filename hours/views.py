@@ -28,22 +28,8 @@ def view_bookCalendarEvents(request):
         requestedHours = Hour.objects.filter(order_id=order).order_by('id')
         for requestedHour in requestedHours:
             totalHoursRequested+=requestedHour.requested_hours
-            hours.append({"name":"Service request: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M"),"date":requestedHour.requested_date.strftime("%B/%d/%Y"),"type":"event","everyYear":False})
+            hours.append({"name":"Service request: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M").replace(microsecond=0),"date":requestedHour.requested_date.strftime("%B/%d/%Y"),"type":"event","everyYear":False})
     
     return HttpResponse(json.dumps(hours), content_type="application/json")
 
 
-def view_completed_hours(request):
-    """View that displays completed hours"""
-    hours = Hour.objects.all().order_by('-id').filter(status='Current Unavailable')
-
-    paginator = Paginator(hours, 5)  # Show 5 hours per page
-
-    page = request.GET.get('page')
-    try:
-        hours = paginator.page(page)
-    except PageNotAnInteger:
-        hours = paginator.page(1)
-    except EmptyPage:
-        hours = paginator.page(paginator.num_pages)
-    return render(request, "completed_hours.html", {"hours": hours})

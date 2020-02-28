@@ -41,7 +41,7 @@ def request_an_hour(request):
                 subject,
                 "Message from: " +
                 request.POST['email'] + 
-                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time,
+                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time + "unsing the hour slot from the " + order_id,
                 'SERVER_EMAIL',
                 ['deboraperaltaorozco@gmail.com'],
                 fail_silently=False,
