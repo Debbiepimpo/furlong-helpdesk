@@ -9,7 +9,7 @@ class Hour(models.Model):
     name = models.TextField(max_length=500, blank=False)
     comments = models.TextField(max_length=500, blank=True)
     requested_hours = models.IntegerField(blank=False)
-    requested_date = models.DateTimeField()
+    requested_date = models.DateTimeField("YYYY-MM-DD HH:MM")
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True, blank=True)
     

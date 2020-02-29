@@ -90,7 +90,7 @@ $(document).ready(function(){
             {% if hours %} {% for hour in hours %}
             <ul class="list-group list-group-flush">
               <li class="list-group-item link-Hrs card-text"><a href="{% url 'view_hours' %}">
-                <h3>{{hour.requested_date|truncatewords:"10"}}</h3><span class="status-color">
+                <h3> Hour booked for {{hour.requested_date}}</h3><span class="status-color">
                 {% if hour.status == "Approved" %}
                 <i class="far fa-calendar-check"></i>
                 {% elif hour.status == "Rejected" %}

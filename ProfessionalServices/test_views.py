@@ -18,11 +18,6 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "ProfessionalServices.html")
 
-    def test_get_completed_ProfService_page(self):
-        page = self.client.get("/ProfessionalServices/completed_ProfessionalServices")
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, "completed_ProfessionalServices.html")
-
     def test_get_ProfService_details_page(self):
         user = User.objects.get(username="test")
         ProfService = PServices(

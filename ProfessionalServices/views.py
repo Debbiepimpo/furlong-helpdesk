@@ -41,7 +41,7 @@ def request_an_hour(request):
                 subject,
                 "Message from: " +
                 request.POST['email'] + 
-                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time + "unsing the hour slot from the " + order_id,
+                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time,
                 'SERVER_EMAIL',
                 ['deboraperaltaorozco@gmail.com'],
                 fail_silently=False,
@@ -60,8 +60,8 @@ def request_an_hour(request):
 def view_ProfessionalServices(request):
     """View to display all Professional Services"""
     ProfessionalServices = PServices.objects.all().order_by(
-        '-id').exclude(status='Cancelled').exclude(status="Current Unavailable")
-    paginator = Paginator(ProfessionalServices, 5)  # Show 5 ProfessionalServices per page
+        '-id').exclude(status="Current Unavailable")
+    paginator = Paginator(ProfessionalServices, 5)  # Show 5 Professional Services per page
 
     page = request.GET.get('page')
     try:
@@ -73,24 +73,9 @@ def view_ProfessionalServices(request):
     return render(request, "ProfessionalServices.html", {"ProfessionalServices": ProfessionalServices})
 
 
-def view_completed_ProfessionalServices(request):
-    """View to display completed ProfessionalServices"""
-    ProfessionalServices = PServices.objects.all().order_by('-id').filter(status='Current Unavailable')
-    paginator = Paginator(ProfessionalServices, 6)  # Show 6 ProfessionalServices per page
-
-    page = request.GET.get('page')
-    try:
-        ProfessionalServices = paginator.page(page)
-    except PageNotAnInteger:
-        ProfessionalServices = paginator.page(1)
-    except EmptyPage:
-        ProfessionalServices = paginator.page(paginator.num_pages)
-    return render(request, "completed_ProfessionalServices.html", {"ProfessionalServices": ProfessionalServices})
-
-
 def ProfService_detail(request, pk):
     """
-    Create a view that returns a single
+    This view that returns a single
     ProfService object details or if is not found
     return 404 error if object is not found.
     """

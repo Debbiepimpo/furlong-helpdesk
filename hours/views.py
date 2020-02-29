@@ -11,8 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_hours(request):
-    """View that displays all hours excluding cancelled or done status"""
-
+    """It render the hours.html"""
             
     return render(request, "hours.html")
 
@@ -28,7 +27,7 @@ def view_bookCalendarEvents(request):
         requestedHours = Hour.objects.filter(order_id=order).order_by('id')
         for requestedHour in requestedHours:
             totalHoursRequested+=requestedHour.requested_hours
-            hours.append({"name":"Service request: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M").replace(microsecond=0),"date":requestedHour.requested_date.strftime("%B/%d/%Y"),"type":"event","everyYear":False})
+            hours.append({"name":"Booking: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M").replace(microsecond=0),"date":requestedHour.requested_date.strftime("%B/%d/%Y"),"type":"event","everyYear":False})
     
     return HttpResponse(json.dumps(hours), content_type="application/json")
 

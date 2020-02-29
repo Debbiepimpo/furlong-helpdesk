@@ -3,7 +3,7 @@ from django.utils.timezone import datetime
 from django.core.exceptions import ValidationError
 from checkout.models import Order
 from ProfessionalServices.models import PServices
-from datetime import date
+from datetime import date, time
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -12,7 +12,7 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
     
 class RequestForm(forms.Form):
-    """Form to allow users to request an hour of profesional service support"""
+    """Form to allow users to request an hour of professional service support"""
     name = forms.CharField(required=True, max_length=75)
     email = forms.EmailField(required=True, max_length=75)
     subject = forms.CharField(required=True, max_length=75)
