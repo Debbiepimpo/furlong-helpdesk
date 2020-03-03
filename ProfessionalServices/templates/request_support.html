@@ -9,6 +9,19 @@
     </div>
 </section>
 
+    <!------ Message displaying in a div ------>
+
+    {% if messages %} {% for message in messages %}
+    <div class="center">
+        <div class="{{ message.tags }}">
+            <div>
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
 <main class="container detail-padding">
         <h1 class="text-center">Request Support.</h1>
         <p class="text-info text-center">Date slots are available Monday to Friday excluding Bank Holidays.Time slots are available from 9:00 to 17:00.<br/>

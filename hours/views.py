@@ -16,6 +16,7 @@ def view_hours(request):
     return render(request, "hours.html")
 
 def view_bookCalendarEvents(request):
+    "This method will allow the jQuery with the help of ajax transfer python data from the data base to the JS calendar"
     orders = Order.objects.filter(user_id=request.user.id).order_by('-id').exclude(status='Inactive')
     totalHours=0
     totalHoursRequested=0
@@ -27,7 +28,7 @@ def view_bookCalendarEvents(request):
         requestedHours = Hour.objects.filter(order_id=order).order_by('id')
         for requestedHour in requestedHours:
             totalHoursRequested+=requestedHour.requested_hours
-            hours.append({"name":"Booking: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M").replace(microsecond=0),"date":requestedHour.requested_date.strftime("%B/%d/%Y"),"type":"event","everyYear":False})
+            hours.append({"name":"Booking: "+requestedHour.name+". Time: "+requestedHour.requested_date.strftime("%H:%M")+ ". Status: "+ requestedHour.status+".","date":requestedHour.requested_date.strftime("%B/%d/%Y"), "type":"event","everyYear":False})
     
     return HttpResponse(json.dumps(hours), content_type="application/json")
 

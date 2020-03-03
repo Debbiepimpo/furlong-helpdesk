@@ -18,17 +18,15 @@ def add_to_cart(request, id):
     
     if id in cart.keys():
        cart[id] = int(cart[id]) + quantity 
-       messages.success(
-            request,
-            "One more of this Professional Service pack added to cart.",
-            extra_tags="alert-success")
+       
     else:
         cart[id] = cart.get(id, quantity)
         request.session['cart'] = cart
-        messages.success(
-            request,
-            "New Professional Services pack successfully added to cart",
-            extra_tags="alert-success")
+        
+    messages.success(
+        request,
+        "Professional Services package added to cart!",
+        extra_tags="alert-success")
     return redirect('view_ProfessionalServices')
 
 

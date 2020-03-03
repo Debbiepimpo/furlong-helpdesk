@@ -5,13 +5,26 @@
         <div class="jumbotron">
             <img class="furlong-slogan" src="/static/img/furlong-logo.png" alt=""></img>
             <br/>
-            
+
         </div>
     </div>
 </section>
 
+<!------ Message displaying in a div ------>
+
+{% if messages %} {% for message in messages %}
+<div class="center">
+    <div class="{{ message.tags }}">
+        <div>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <section class="container">
-    
+
     <div class="center index-title">
         <h1 class="display-title">Furlong Solutions provides support and help with your platform.</h1>
     </div>
@@ -63,11 +76,11 @@
                     <strong class="display-title">Register</strong>
                 </div>
                 <div class="index-sub-text display-title">
-                   Start the management of your Profesional Services hours.
+                    Start the management of your Profesional Services hours.
                 </div>
             </div>
-             {% endif %}
-            
+            {% endif %}
+
             <div class="col-sm-6 col-md-3">
                 <div class="index-icon">
                     <a href="{% url 'contact' %}" aria-label="hours"> <i class="fas fa-envelope-open-text"></i></a>
@@ -81,11 +94,11 @@
             </div>
         </div>
     </div>
-    
-     <div class="center index-slogan">
+
+    <div class="center index-slogan">
         <h1 class="display-title"> Take control of the support we provide. </h1>
     </div>
-    
+
     <div class="center bottom-padding display-title">
         <p> At Furlong solutions make a compromise with our clients and spend our time working on developing the platform personalize for them.
             <br>

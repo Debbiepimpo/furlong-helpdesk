@@ -13,16 +13,6 @@ $(function() {
 </script>
 {% endblock %} {% block content %} {% load bootstrap_tags %}
 
-<!--   Main page   -->
-
-<section class="parallax parallax-ProfessionalServices">
-  <div class="container main-message">
-    <div class="jumbotron">
-      <h1 class="display-professionalServices"><br >Professional Services Packages.</h1>
-    </div>
-  </div>
-</section>
-
 <!-- Modal -->
 <div class="modal fade" id="ProfServiceGuide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -45,6 +35,29 @@ $(function() {
     </div>
   </div>
 </div>
+
+<!--   Main page   -->
+<section class="parallax parallax-ProfessionalServices">
+  <div class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-professionalServices long-text"><br >Professional Services Packages.</h1> <!--This is for computer screens-->
+      <h1 class="display-professionalServices short-text"><br >Packages.</h1> <!-- This h1 is for smaller screens such as mobiles-->
+    </div>
+  </div>
+</section>
+
+<!------ Message displaying in a div ------>
+
+{% if messages %} {% for message in messages %}
+<div class="center">
+    <div class="{{ message.tags }}">
+        <div>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
 <!--   Navigation to submit a Professional Service   -->
 <section class="container">
@@ -72,10 +85,10 @@ $(function() {
     </div>
     <div class="card-footer text-muted">
       {% if user.is_authenticated %}
-      <a href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"> Add to Cart</i></a> {% csrf_token %}
+      <a class="btn btn-color-fs buttons-right" href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"></i></a> {% csrf_token %}
       {% else %}
-      <i class="fas fa-cart-plus"> Add to Cart</i> {% endif %}
-      <a class="btn btn-color-fs buttons-right" href="{% url 'ProfService_detail' ProfService.id %}" role="button">View</a>
+      {% endif %}
+      <a class="btn btn-color-fs buttons-left" href="{% url 'ProfService_detail' ProfService.id %}" role="button">Details</a>
     </div>
   </div>
 
@@ -83,21 +96,22 @@ $(function() {
 
   <!--   Pagination Professional Services   -->
 
-  <div class="pagination">
-    <span class="step-links">
-        {% if ProfessionalServices.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ ProfessionalServices.number }} of {{ ProfessionalServices.paginator.num_pages }}.
-        </span> {% if ProfessionalServices.has_next %}
+<div class="pagination">
+  <span class="step-links">
+  {% if ProfessionalServices.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
+    <span class="current">
+      Page {{ ProfessionalServices.number }} of {{ ProfessionalServices.paginator.num_pages }}.
+    </span> {% endif %} {% if ProfessionalServices.has_next %}
+    <span class="current">
+      Page {{ ProfessionalServices.number }} of {{ ProfessionalServices.paginator.num_pages }}.
+    </span>
     <a href="?page={{ ProfessionalServices.next_page_number }}">next</a>
     <a href="?page={{ ProfessionalServices.paginator.num_pages }}">last &raquo;</a> {% endif %}
-    </span>
-  </div>
-
+  </span>
+</div>
+  
 
 
 </section>

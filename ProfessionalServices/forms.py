@@ -12,23 +12,21 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
     
 class RequestForm(forms.Form):
-    """Form to allow users to request an hour of professional service support"""
+    """Form to allow users to request an hour of support"""
     name = forms.CharField(required=True, max_length=75)
     email = forms.EmailField(required=True, max_length=75)
     subject = forms.CharField(required=True, max_length=75)
     date_required = forms.DateField(widget=DateInput)
     start_time  = forms.TimeField(widget=TimeInput)
-    finish_time  = forms.TimeField(widget=TimeInput)
+    hours  = forms.IntegerField(required=True)
     package = forms.ChoiceField(required=True)
         
     def clean(self):
         end = self.cleaned_data.get("finish_time")
         start = self.cleaned_data.get("start_time")
         date = self.cleaned_data.get("date_required")
-        if end <= start:
-            raise ValidationError('Ending times must after starting times')
         if date <= datetime.now().date():
-            raise ValidationError('requested date must after today')
+            raise ValidationError('Requested date must be after today')
 
     def __init__(self, user, *args, **kwargs):
         super(RequestForm, self).__init__(*args, **kwargs)

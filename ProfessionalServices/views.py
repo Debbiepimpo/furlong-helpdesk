@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import auth, messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from datetime import timedelta
 from .models import PServices
 from .forms import RequestForm
 from hours.forms import HourForm
@@ -14,7 +15,11 @@ users = []
     
 @login_required
 def request_an_hour(request):
-    """View handle support requests form"""
+    """This piece of code allows to send an email to the admin
+    about requesting training hours with the time, date, amount 
+    of hours and from which package if the user bought same package
+    more than once"""
+    
     if request.method == 'POST':
         request_form = RequestForm(request.user,request.POST)
         if request_form.is_valid():
@@ -22,33 +27,41 @@ def request_an_hour(request):
             subject = request.POST['subject']
             date_required = request.POST['date_required']
             start_time = request.POST['start_time']
-            finish_time = request.POST['finish_time']
+            hours = request.POST['hours']
             order_id = request.POST['package']
             order_data = get_object_or_404(Order, pk=order_id)
-            hourForm = HourForm()
-            requestedHour = hourForm.save(commit=False)
-            requestedHour.name = name
-            sh, sm = start_time.split(':')
-            fh, fm = finish_time.split(':')
-            requested_hours = int(fh)-int(sh)
-            requestedHour.requested_hours = requested_hours
-            requestedHour.requested_date = date_required
-            requestedHour.order = order_data
-            requestedHour.save()
-            order_data.remainingHours = (order_data.remainingHours - requested_hours)
-            order_data.save()
-            send_mail(
-                subject,
-                "Message from: " +
-                request.POST['email'] + 
-                "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " to " + finish_time,
-                'SERVER_EMAIL',
-                ['deboraperaltaorozco@gmail.com'],
-                fail_silently=False,
-            )
-            messages.success(request, "Your message has been sent!",
-                                      extra_tags="alert-success")
-            return redirect(reverse('index'))
+            try:
+                send_mail(
+                    subject,
+                    "Message from: " +
+                    request.POST['email'] + 
+                    "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " for " + hours + " hours ",
+                    'SERVER_EMAIL',
+                    ['deboraperaltaorozco@gmail.com'],
+                    fail_silently=False,
+                )
+                
+                """This piece of code below allows to save the 
+                requested hours on database and make the deductions 
+                from available hours"""
+                
+                hourForm = HourForm()
+                requestedHour = hourForm.save(commit=False)
+                requestedHour.name = name
+                requestedHour.requested_hours = hours
+                requestedHour.requested_date = date_required + " " + start_time
+                requestedHour.order = order_data
+                requestedHour.save()
+                order_data.remainingHours = (order_data.remainingHours - int(hours))
+                order_data.save()
+                messages.success(request, "Your message has been sent!",
+                                          extra_tags="alert-success")
+                return redirect(reverse('index'))
+            except Exception as err:
+                messages.error(request, "Oops! Something went wrong.",
+                                          extra_tags="alert-success")
+                print("error: {0}".format(err))
+                return redirect(reverse('profile'))
         else:
             messages.error(request, "Unable to send message at this time",
                                     extra_tags="alert-danger")

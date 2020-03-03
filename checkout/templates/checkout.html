@@ -19,7 +19,7 @@
   </div>
 </section>
 
-<section class="container detail-padding">
+<section class="detail-padding">
     <div class="row">
         <div class="profile-submit-buttons">
             <h1>Check Out:</h1>
@@ -54,27 +54,45 @@
     {% if cart_items %}
     <table class="table table-hover">
         <thead class="table-active table-color">
-            <tr>
+            <tr class="long-text">
                 <th scope="col">Professional Service Name</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Details</th>
                 <th scope="col">Price</th>
             </tr>
+            <tr class="short-text">
+                <th scope="col">PS Name</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Det</th>
+                <th scope="col">Price</th>
+            </tr>
         </thead>
         <tbody>
             {% for item in cart_items %}
-            <tr class="">
+            <tr class="long-text">
                 <th scope="row">{{ item.ProfService.name }}</th>
                 <td>{{ item.ProfService.totalHours }}</td>
                 <td>{{ item.ProfService.description }}</td>
                 <td> £ {{ item.ProfService.udPrice }}</td>
             </tr>
+            <tr class="short-text">
+                <th scope="row">{{ item.ProfService.name|truncatechars:9}}</th>
+                <td>{{ item.ProfService.totalHours }}</td>
+                <td>{{ item.ProfService.description|truncatechars:8}}</td>
+                <td> £ {{ item.ProfService.udPrice }}</td>
+            </tr>
             {% endfor %}
-            <tr class="table table-colored">
+            <tr class="table table-colored long-text">
                 <th scope="row"></th>
                 <td></td>
                 <td></td>
                 <td>Total: £{{ total }}</td>
+            </tr>
+            <tr class="table table-colored short-text">
+                <th scope="row">Total: £{{ total }}</th>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </tbody>
     </table>

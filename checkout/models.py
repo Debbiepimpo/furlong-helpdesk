@@ -31,7 +31,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.ProfService, self.date, self.full_name)
+        return "Package Id: {0}, Package: {1}, Purchase Date: {2}".format(self.id, self.ProfService, self.date)
 
 
 class OrderLineItem(models.Model):

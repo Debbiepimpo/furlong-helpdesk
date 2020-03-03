@@ -208,6 +208,10 @@ input[type="search"] {
     color: white;
 }
 
+
+.long-text { display: inline-block; }
+.short-text { display: none; }
+
 .display-contact,
 .display-professionalServices,
 .display-profile,
@@ -423,6 +427,10 @@ input[type="search"] {
 .card-footer .btn-color .btn-danger,
 .buttons-right {
     float: right;
+}
+
+.buttons-left {
+    float: left;
 }
 
 
@@ -654,10 +662,18 @@ input[type="search"] {
 }
 
 @media (max-width: 575px) {
+    
+    .long-text { display: none; }
+    .short-text { display: inline-block; }
+    
     .jumbotron {
         padding: 2.5rem 2rem;
     }
-
+    
+    .parallax {
+        min-height: 300px;
+    }
+    
     .logo {
         background: url("/static/img/logo.png");
         background-position: left;
@@ -694,6 +710,13 @@ input[type="search"] {
 @media (max-width:364px) {
     .display-bookings {
         font-size: 59px;
+    }
+    
+    .long-text { display: none; }
+    .short-text { display: inline-block; }
+    
+    .parallax {
+        min-height: 300px;
     }
 
     .logo {
