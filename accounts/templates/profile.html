@@ -45,15 +45,18 @@ without going back to the tab the user was clicked at the beginning. -->
             <a class="nav-link active short-text" data-toggle="tab" href="#ProfessionalServices" aria-hidden="true">PS ({{ totalHours }})</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#hours" aria-hidden="true">Hours ({{ totalHoursRequested }})</a>
+            <a class="nav-link long-text" data-toggle="tab" href="#hours" aria-hidden="true">Hours ({{ totalHoursRequested }})</a>
+            <a class="nav-link short-text" data-toggle="tab" href="#hours" aria-hidden="true">H ({{ totalHoursRequested }})</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle long-text" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Buy/Request </a>
             <a class="nav-link dropdown-toggle short-text" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> B/R </a>
             <div class="dropdown-menu dropdown-padd">
-                <a class="" href="{% url 'view_ProfessionalServices' %}" role="button"> Buy more Hours</a>
+                <a class="long-text" href="{% url 'view_ProfessionalServices' %}" role="button">Buy Hours</a>
+                <a class="short-text" href="{% url 'view_ProfessionalServices' %}" role="button">Buy</a>
                 <div class="dropdown-divider"></div>
-                <a class="" href="{% url 'request_support' %}" role="button"> Request an Hour</a>
+                <a class="long-text" href="{% url 'request_support' %}" role="button">Request Hours</a>
+                <a class="short-text" href="{% url 'request_support' %}" role="button">Request</a>
             </div>
         </li>
     </ul>
