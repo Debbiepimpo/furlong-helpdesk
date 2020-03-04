@@ -1,4 +1,7 @@
+![image](https://i.ibb.co/CW5sjtj/furlong-logo.png) 
+
 # Furlong Helpdesk
+
 
 I have the pleasure of introducing my FullStack E-commerce Project. Furlong Helpdesk was developed with Python, Django, postgreSQL and Stripe as main tools.
 
