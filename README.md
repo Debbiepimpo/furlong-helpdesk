@@ -26,21 +26,21 @@ Even  when the user's Cart is empty.
 
 ## Wireframes
 
-1. [Homepage - Desktop wireframe]()
+1. [Homepage - Desktop wireframe](https://i.ibb.co/x5fVvY5/Home-Page-Desktop.png)
 
-2. [Homepage - Mobile wireframe]()
+2. [Homepage - Mobile wireframe](https://i.ibb.co/HTg7hyQ/Home-Page-mobile.png)
 
-3. [Professional Services - Desktop wireframe]()
+3. [Professional Services - Desktop wireframe](https://i.ibb.co/Qc1G5BF/Professional-Services-Desktop.png)
 
-4. [Professional Services - Mobile wireframe]()
+4. [Professional Services - Mobile wireframe](https://i.ibb.co/FVFYXx3/Professional-Services-mobile.png)
 
-5. [Calendar - Desktop Wireframe]()
+5. [Calendar - Desktop Wireframe](https://i.ibb.co/y0LRn9p/Calendar-Desktop.png)
 
-6. [Calendar - Mobile Wireframe]()
+6. [Calendar - Mobile Wireframe](https://i.ibb.co/1fh34hS/Calendar-mobile.png)
 
-7. [Profile - Desktop Wireframe]()
+7. [Profile - Desktop Wireframe](https://i.ibb.co/RCrh37w/Profile-Desktop.png)
 
-8. [Profile - Mobile Wireframe]()
+8. [Profile - Mobile Wireframe](https://i.ibb.co/7pg1Dmf/Profile-mobile.png)
 
   
 ## User stories
@@ -97,6 +97,7 @@ Even  when the user's Cart is empty.
 In the future I would like to implement this features:
 - When a slot is required, aprove or reject it automatically with the availability of working hours and slots booked already.
 - User view for admin site with an admin calendar.
+- Updating the search for find anything required by any letter.
 - A live chat feature for users to contact directly with Furlong admins.
 
 
@@ -127,8 +128,9 @@ In the future I would like to implement this features:
   - [Whitenoise](http://whitenoise.evans.io/en/stable/)
   - [Git](https://en.wikipedia.org/wiki/Git)
   - [AWS-Cloud9](https://aws.amazon.com/cloud9/)
-  - [Imgur](https://imgur.com/)
+  - [Imgbb](https://imgbb.com/)
   - [Balsamiq](https://balsamiq.com/)
+  - [Unicorn revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB)
 
 ## Testing
 
@@ -293,9 +295,9 @@ For making Furlong Helpdesk work in Heroku, I deployed the app as follows:
 
 
 ## Content
-- The images used on Furlong Helpdesk were sourced from Google Images usink keywords and uploading on my personal [Imgur](https://imgur.com/).
-- My favicon is [Furlong Business Solutions](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.furlongsolutions.com%2F&psig=AOvVaw2F38p5k8qL4NmcAtEhrNTn&ust=1582811004527000&source=images&cd=vfe&ved=0CAMQjB1qFwoTCPDqlc-s7-cCFQAAAAAdAAAAABAD) original logo.
-- My Calendar is a fully funcional calendar written in JS, I'v got the calendar from a website with good examples of JS Calendars and I chose this : [evo-calendar](https://www.jqueryscript.net/time-clock/event-calendar-evo.html). I made it work with the data I've desired to show on it and changed it to fit it according with my project.
+* The images used on Furlong Helpdesk were sourced from Google Images usink keywords and uploading on my personal [Imgur](https://imgur.com/).
+* My favicon is [Furlong Business Solutions](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.furlongsolutions.com%2F&psig=AOvVaw2F38p5k8qL4NmcAtEhrNTn&ust=1582811004527000&source=images&cd=vfe&ved=0CAMQjB1qFwoTCPDqlc-s7-cCFQAAAAAdAAAAABAD) original logo.
+* My Calendar is a fully funcional calendar written in JS, I'v got the calendar from a website with good examples of JS Calendars and I chose this : [evo-calendar](https://www.jqueryscript.net/time-clock/event-calendar-evo.html). I made it work with the data I've desired to show on it and changed it to fit it according with my project.
   
 ## Acknowledgements
 
