@@ -1,17 +1,26 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %} Profesional Service package Detail {% endblock %} {% block content %} {% load bootstrap_tags %}
 
 <!--   Bootswatch panels to display Professional Service detail   -->
+<section class="parallax parallax-detail">
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-detail"> <br>Package Details.</h1>
+        </div>
+    </div>
+</section>
 
-<section class="container detail-padding">
+<div class="center index-title">
+    <h1 class="display-title">Professional Services Package Details.</h1>
+</div>
+
+<section class="detail-padding">
     <div class="card mb-3">
         <h3 class="card-header">{{ProfService.name}}</h3>
         <div class="card-body">
             <p class="card-text">{{ProfService.description }}</p>
         </div>
         <div class="card-footer text-muted">
-            {% if user.is_authenticated %}
-            {% csrf_token %} {% else %}
-            {% endif %}
+            {% if user.is_authenticated %} {% csrf_token %} {% else %} {% endif %}
             <a class="btn btn btn-color buttons-right" href="{% url 'view_ProfessionalServices' %}" role="button">Buy More</a>
         </div>
     </div>

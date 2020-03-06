@@ -2,69 +2,73 @@
 
 
 <section class="parallax parallax-search">
-  <div class="container main-message">
-    <div class="jumbotron">
-      <h1 class="display-search"> <br >Search Results.</h1>
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-search"> <br>Search Results.</h1>
+        </div>
     </div>
-  </div>
 </section>
 
-<section class="container detail-padding">
+<section class="detail-padding">
     <div class="row">
         <div class="search-results">
             <h1> Search results:</h1>
         </div>
     </div>
     <div class="tab-pane" id="all">
-        {% if hours.count == 0 and ProfessionalServices.count == 0 %}
+        {% if hours.count == 0 and orders.count == 0 %}
         <div class="card mb-3">
             <h3 class="card-header">No search results found</h3>
         </div>
         {% else %}
         <div class="search-title-padding">
-            <h4 class="search-title"> Professional Services Packages.</h4>
-        </div> 
-        {% for ProfService in ProfessionalServices %}
-        
-        <div class="card mb-3">
-            <h3 class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="far fa-clock"> {{ProfService.totalHours }} h.</i></span></h3>
-            <div class="progress">
-              {% if ProfService.status == "Available" %}
-              <div class="progress-bar progress-bar-animated progress-bar-striped progress-available" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
-              {% else %}
-              <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Current Unavailable </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{ProfService.description }}</p>
-            </div>
-            <div class="row card-footer text-muted"></div>
+            <h4 class="search-title">My Professional Services Packages.</h4>
         </div>
-        {% endfor %} 
+        {% for order in orders %}
+
+        <div class="card mb-3">
+            <a href="{% url 'profile' %}">
+                <h3 class="card-header"><strong>{{order.ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="far fa-clock"> {{order.ProfService.totalHours }} h.</i></span></h3>
+                <div class="progress">
+                    {% if order.status == "Available" %}
+                    <div class="progress-bar progress-bar-animated progress-bar-striped progress-available" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
+                    {% else %}
+                    <div class="progress-bar progress-bar-animated progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Current Unavailable </div>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{order.ProfService.description }}</p>
+                </div>
+                <div class="row card-footer text-muted"></div>
+            </a>
+        </div>
+        {% endfor %}
         <div class="search-title-padding">
             <h4 class="search-title"> Hours.</h4>
         </div>
         {% for hour in hours %}
-        
+
         <div class="card mb-1">
-            <h3 class="card-header">{{hour.requested_date|truncatewords:"5"}}</h3>
-            <div class="progress">
-              {% if hour.status == "Approved" %}
-              <div class="progress-bar progress-bar-animated progress-bar-striped progress-approved" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
-              {% elif hour.status == "Rejected" %}
-              <div class="progress-bar progress-bar-animated progress-bar-striped progress-rejected" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Rejected </div>
-              {% else %}
-              <div class="progress-bar progress-bar-animated progress-bar-striped progress-pending" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Pending </div>
-              {% endif %}
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{hour.comments}}</p>
-            </div>
-            <div class="row card-footer text-muted"></div>
+            <a href="{% url 'view_hours' %}">
+                <h3 class="card-header">{{hour.requested_date}}</h3>
+                <div class="progress">
+                    {% if hour.status == "Approved" %}
+                    <div class="progress-bar progress-bar-animated progress-bar-striped progress-approved" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Approved </div>
+                    {% elif hour.status == "Rejected" %}
+                    <div class="progress-bar progress-bar-animated progress-bar-striped progress-rejected" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Rejected </div>
+                    {% else %}
+                    <div class="progress-bar progress-bar-animated progress-bar-striped progress-pending" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> Pending </div>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{hour.comments}}</p>
+                </div>
+                <div class="row card-footer text-muted"></div>
+            </a>
         </div>
         {% endfor %} {% endif %}
     </div>
-         
+
 
 </section>
 {% endblock %}

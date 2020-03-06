@@ -2,7 +2,6 @@
 
 /*------------------------ Main styles ----------------------------------*/
 
-
 html,
 body {
     font-family: 'Montserrat', Sans-serif;
@@ -108,7 +107,7 @@ footer a:hover {
     border-bottom: 1px solid #f6303e;
 }
 
- .nav-tabs .nav-link.active {
+.nav-tabs .nav-link.active {
     color: #512d6d !important;
     background-color: #fff;
     border-color: #f6303e #f6303e #fff;
@@ -153,7 +152,7 @@ input[type="search"] {
     color: #512d6d;
     background-color: #f6303eb0;
     border-color: #f6303eb0;
-    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.47);
 }
 
 
@@ -161,12 +160,13 @@ input[type="search"] {
     color: #512d6d;
     background-color: #f6303e40;
     border-color: #f6303e40;
-    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.47);
 }
 
 .btn-colored {
     border-radius: 50%;
 }
+
 .btn-border,
 .btn-color {
     border-radius: 25px;
@@ -184,16 +184,16 @@ input[type="search"] {
     background-color: #d3b6ea;
     border-color: #512d6d4a;
     border-radius: 25px;
-    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.47);
 }
 
 .btn-success {
     background-color: #bbd463 !important;
     border-color: #bbd463!important;
-    box-shadow: 1px 3px 20px 0px rgba(0,0,0,0.47) !important;
+    box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.47) !important;
 }
 
-.btn-right { 
+.btn-right {
     float: right;
 }
 
@@ -209,8 +209,13 @@ input[type="search"] {
 }
 
 
-.long-text { display: inline-block; }
-.short-text { display: none; }
+.long-text {
+    display: inline-block;
+}
+
+.short-text {
+    display: none;
+}
 
 .display-contact,
 .display-professionalServices,
@@ -220,6 +225,7 @@ input[type="search"] {
 .display-ShoppingBag,
 .display-chekout,
 .display-search,
+.display-detail,
 .display-password,
 .display-bookings {
     font-size: 64px;
@@ -247,7 +253,8 @@ input[type="search"] {
     color: #f6303e;
 }
 
-.display-professionalServices {
+.display-professionalServices,
+.display-detail {
     color: #ff574b;
     text-shadow: 2px 0px 7px #fff;
 }
@@ -304,7 +311,8 @@ input[type="search"] {
     background-image: url("/static/img/checkout.jpg");
 }
 
-.parallax-search {
+.parallax-search,
+.parallax-detail {
     background-image: url("/static/img/search-2.jpg");
 }
 
@@ -316,8 +324,13 @@ input[type="search"] {
 
 /*------------------------ Index ----------------------------------------*/
 
+.display-welcome {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
 .index-title {
-    margin-top: 110px;
+    margin-top: 40px;
     margin-bottom: 80px;
     font-weight: 400;
 }
@@ -452,13 +465,18 @@ input[type="search"] {
     display: flex;
     height: 1.5rem;
     overflow: hidden;
-    font-size: 0.703125rem;
+    font-size: 0.803125rem;
     background-color: #e9ecef;
+}
+
+.progress-bar {
+    color: #373a3c !important;
+    font-weight: bold;
 }
 
 .progress-available,
 .progress-approved {
-    background-color: #c4ffc4;
+    background-color: #5ea1eb;
 }
 
 .progress-rejected {
@@ -466,14 +484,14 @@ input[type="search"] {
 }
 
 .progress-pending {
-    background-color: #ffff9e;
+    background-color: #d5bd47c4;
 }
 
 
 /*------------------------ Search ---------------------------------------*/
 
 .search-results,
-.search-title-padding{
+.search-title-padding {
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -491,7 +509,8 @@ input[type="search"] {
 }
 
 .calendar-font {
-    color: #512d6d;;
+    color: #512d6d;
+    ;
     font-weight: 500;
 }
 
@@ -505,7 +524,7 @@ input[type="search"] {
     text-transform: uppercase;
 }
 
-.profile-title > strong {
+.profile-title>strong {
     color: #512d6d !important;
 }
 
@@ -542,7 +561,7 @@ input[type="search"] {
     background-color: #512d6dd1;
     color: #fff;
     font-size: medium;
-}    
+}
 
 /*------------------------ Checkout  ------------------------------------*/
 
@@ -572,7 +591,7 @@ input[type="search"] {
     .navbar {
         max-height: 63px;
     }
-    
+
     .shopping-icon {
         position: fixed;
     }
@@ -645,7 +664,7 @@ input[type="search"] {
     .jumbotron {
         padding: 7rem 2rem;
     }
-    
+
     .shopping-icon {
         position: relative;
     }
@@ -662,18 +681,22 @@ input[type="search"] {
 }
 
 @media (max-width: 575px) {
-    
-    .long-text { display: none; }
-    .short-text { display: inline-block; }
-    
+
+    .long-text {
+        display: none;
+    }
+    .short-text {
+        display: inline-block;
+    }
+
     .jumbotron {
         padding: 2.5rem 2rem;
     }
-    
+
     .parallax {
         min-height: 300px;
     }
-    
+
     .logo {
         background: url("/static/img/logo.png");
         background-position: left;
@@ -691,7 +714,7 @@ input[type="search"] {
     }
 
     .shopping-icon {
-       margin-top: 0px;
+        margin-top: 0px;
         position: fixed;
     }
 
@@ -711,10 +734,14 @@ input[type="search"] {
     .display-bookings {
         font-size: 59px;
     }
-    
-    .long-text { display: none; }
-    .short-text { display: inline-block; }
-    
+
+    .long-text {
+        display: none;
+    }
+    .short-text {
+        display: inline-block;
+    }
+
     .parallax {
         min-height: 300px;
     }

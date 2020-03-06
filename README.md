@@ -102,6 +102,7 @@ In the future I would like to implement this features:
 - User view for admin site with an admin calendar.
 - Updating the search for find anything required by any letter.
 - A live chat feature for users to contact directly with Furlong admins.
+- Profile avatar will be available to change by the user.
 
 
 ## Technologies Used

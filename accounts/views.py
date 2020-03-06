@@ -39,7 +39,10 @@ def contact(request):
             messages.error(request, "Unable to send message at this time",
                                     extra_tags="alert-danger")
     else:
-        contact_form = ContactForm()
+        if request.user.is_authenticated:
+            contact_form = ContactForm(initial={'email': request.user.email, 'name': request.user.get_full_name})
+        else:
+            contact_form = ContactForm()
     return render(request, 'contact.html', {'contact_form': contact_form})
 
 

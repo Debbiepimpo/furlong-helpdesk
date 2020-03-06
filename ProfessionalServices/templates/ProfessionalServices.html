@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% load static from staticfiles %}{% block page_title %} Professional Services {% endblock %} {% block onloadmodal %}
 <script type="text/javascript">
-$(function() {
-  if (typeof Storage != "undefined") {
-    if (!sessionStorage.getItem("done")) {
-      setTimeout(function() {
-        $('#ProfServiceGuide').modal('show');
-      }, 1400);
+  $(function() {
+    if (typeof Storage != "undefined") {
+      if (!sessionStorage.getItem("done")) {
+        setTimeout(function() {
+          $('#ProfServiceGuide').modal('show');
+        }, 1400);
+      }
+      sessionStorage.setItem("done", true);
     }
-    sessionStorage.setItem("done", true);
-  }
-});
+  });
 </script>
 {% endblock %} {% block content %} {% load bootstrap_tags %}
 
@@ -40,8 +40,10 @@ $(function() {
 <section class="parallax parallax-ProfessionalServices">
   <div class="container main-message">
     <div class="jumbotron">
-      <h1 class="display-professionalServices long-text"><br >Professional Services Packages.</h1> <!--This is for computer screens-->
-      <h1 class="display-professionalServices short-text"><br >Packages.</h1> <!-- This h1 is for smaller screens such as mobiles-->
+      <h1 class="display-professionalServices long-text"><br>Professional Services Packages.</h1>
+      <!--This is for computer screens-->
+      <h1 class="display-professionalServices short-text"><br>Packages.</h1>
+      <!-- This h1 is for smaller screens such as mobiles-->
     </div>
   </div>
 </section>
@@ -50,12 +52,12 @@ $(function() {
 
 {% if messages %} {% for message in messages %}
 <div class="center">
-    <div class="{{ message.tags }}">
-        <div>
-            {{ message }}
-        </div>
+  <div class="{{ message.tags }}">
+    <div>
+      {{ message }}
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
 
@@ -71,7 +73,7 @@ $(function() {
 
   {% for ProfService in ProfessionalServices %}
   <div class="card mb-3">
-    <div class="card-header"><strong>{{ProfService.name|truncatewords:"5"}}</strong><span class="card-link"><i class="fas fa-pound-sign"> {{ProfService.udPrice}}</i></span></div>
+    <h3 class="card-header">{{ProfService.name|truncatewords:"5"}}<span class="card-link"><i class="fas fa-pound-sign"> {{ProfService.udPrice}}</i></span></h3>
     <div class="progress">
       {% if ProfService.status == "Available" %}
       <div class="progress-bar progress-bar-animated progress-bar-striped progress-bar-available" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> Available </div>
@@ -85,9 +87,7 @@ $(function() {
     </div>
     <div class="card-footer text-muted">
       {% if user.is_authenticated %}
-      <a class="btn btn-color-fs buttons-right" href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"></i></a> {% csrf_token %}
-      {% else %}
-      {% endif %}
+      <a class="btn btn-color-fs buttons-right" href="{% url 'add_to_cart' ProfService.id %}" aria-label="purchase"><i class="fas fa-cart-plus"></i></a> {% csrf_token %} {% else %} {% endif %}
       <a class="btn btn-color-fs buttons-left" href="{% url 'ProfService_detail' ProfService.id %}" role="button">Details</a>
     </div>
   </div>
@@ -96,8 +96,8 @@ $(function() {
 
   <!--   Pagination Professional Services   -->
 
-<div class="pagination">
-  <span class="step-links">
+  <div class="pagination">
+    <span class="step-links">
   {% if ProfessionalServices.has_previous %}
     <a href="?page=1">&laquo; first</a>
     <a href="?page={{ ProfessionalServices.previous_page_number }}">previous</a>
@@ -109,9 +109,9 @@ $(function() {
     </span>
     <a href="?page={{ ProfessionalServices.next_page_number }}">next</a>
     <a href="?page={{ ProfessionalServices.paginator.num_pages }}">last &raquo;</a> {% endif %}
-  </span>
-</div>
-  
+    </span>
+  </div>
+
 
 
 </section>

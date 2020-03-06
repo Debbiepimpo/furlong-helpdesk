@@ -12,11 +12,11 @@
 {% endblock %}{% block content %}
 
 <section class="parallax parallax-checkout">
-  <div class="container main-message">
-    <div class="jumbotron">
-      <h1 class="display-checkout"> <br ><br >Checkout.</h1>
+    <div class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-checkout"> <br><br>Checkout.</h1>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="detail-padding">
@@ -52,43 +52,51 @@
     <!--   Displays Professional Services about to be purchased   -->
 
     {% if cart_items %}
-    <table class="table table-hover">
+    <table class="table table-hover long-text">
         <thead class="table-active table-color">
-            <tr class="long-text">
-                <th scope="col">Professional Service Name</th>
+            <tr>
+                <th scope="col">Package Name</th>
                 <th scope="col">Hours</th>
-                <th scope="col">Details</th>
-                <th scope="col">Price</th>
-            </tr>
-            <tr class="short-text">
-                <th scope="col">PS Name</th>
-                <th scope="col">Hours</th>
-                <th scope="col">Det</th>
+                <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
             </tr>
         </thead>
         <tbody>
             {% for item in cart_items %}
-            <tr class="long-text">
+            <tr>
                 <th scope="row">{{ item.ProfService.name }}</th>
-                <td>{{ item.ProfService.totalHours }}</td>
-                <td>{{ item.ProfService.description }}</td>
-                <td> £ {{ item.ProfService.udPrice }}</td>
-            </tr>
-            <tr class="short-text">
-                <th scope="row">{{ item.ProfService.name|truncatechars:9}}</th>
-                <td>{{ item.ProfService.totalHours }}</td>
-                <td>{{ item.ProfService.description|truncatechars:8}}</td>
+                <td> {{ item.ProfService.totalHours }}</td>
+                <td> {{ item.quantity }}</td>
                 <td> £ {{ item.ProfService.udPrice }}</td>
             </tr>
             {% endfor %}
-            <tr class="table table-colored long-text">
+            <tr class="table table-colored">
                 <th scope="row"></th>
                 <td></td>
                 <td></td>
                 <td>Total: £{{ total }}</td>
             </tr>
-            <tr class="table table-colored short-text">
+        </tbody>
+    </table>
+    <table class="table table-hover short-text">
+        <thead class="table-active table-color">
+            <tr>
+                <th scope="col">PS Name</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <th scope="row">{{ item.ProfService.name|truncatechars:9}}</th>
+                <td>{{ item.ProfService.totalHours }}</td>
+                <td>{{ item.quantity}}</td>
+                <td> £ {{ item.ProfService.udPrice }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="table table-colored">
                 <th scope="row">Total: £{{ total }}</th>
                 <td></td>
                 <td></td>
@@ -96,12 +104,7 @@
             </tr>
         </tbody>
     </table>
-
-    {% else %}
-    <div class="card mb-3">
-        <h3 class="card-header">Looks like your cart is empty!</h3>
-    </div>
-    {% endif %}
+    {% else %} {% endif %}
 
     <!--   Payment form   -->
 

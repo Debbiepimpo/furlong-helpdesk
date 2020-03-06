@@ -13,8 +13,6 @@ class TimeInput(forms.TimeInput):
     
 class RequestForm(forms.Form):
     """Form to allow users to request an hour of support"""
-    name = forms.CharField(required=True, max_length=75)
-    email = forms.EmailField(required=True, max_length=75)
     subject = forms.CharField(required=True, max_length=75)
     date_required = forms.DateField(widget=DateInput)
     start_time  = forms.TimeField(widget=TimeInput)

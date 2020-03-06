@@ -2,8 +2,7 @@
 
 <link rel="stylesheet" href="../static/css/booking-calendar.css" />
 <script src="../static/js/booking-calendar.js"></script>
-<script type="text/javascript" >
-
+<script type="text/javascript">
   $.ajax({
     url: 'view_bookCalendarEvents',
     type: 'GET',
@@ -16,26 +15,39 @@
         titleFormat: 'MM yyyy',
         eventHeaderFormat: 'MM d, yyyy',
         canAddEvent: false
+
       });
     }
   });
-
 </script>
 
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <section class="parallax parallax-bookings">
   <div class="container main-message">
     <div class="jumbotron">
-      <h1 class="display-bookings long-text">Manage your bookings.</h1> <!--This is for computer screens-->
-      <h1 class="display-bookings short-text"><br />Bookings.</h1> <!-- This h1 is for smaller screens such as mobiles-->
+      <h1 class="display-bookings long-text">Manage your bookings.</h1>
+      <!--This is for computer screens-->
+      <h1 class="display-bookings short-text"><br />Bookings.</h1>
+      <!-- This h1 is for smaller screens such as mobiles-->
     </div>
   </div>
 </section>
+<!------ Message displaying in a div ------>
 
-  <div class="center calendar-title">
-    <h1 class="calendar-font">CALENDAR</h1>
+{% if messages %} {% for message in messages %}
+<div class="center">
+  <div class="{{ message.tags }}">
+    <div>
+      {{ message }}
+    </div>
   </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="center calendar-title">
+  <h1 class="calendar-font">CALENDAR</h1>
+</div>
 
 <section class="detail-padding">
   <div id="bookingCalendar"></div>

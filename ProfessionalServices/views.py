@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import auth, messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from datetime import timedelta
 from .models import PServices
 from .forms import RequestForm
@@ -23,7 +24,8 @@ def request_an_hour(request):
     if request.method == 'POST':
         request_form = RequestForm(request.user,request.POST)
         if request_form.is_valid():
-            name = request.POST['name']
+            request.user.first_name
+            request.user.last_name
             subject = request.POST['subject']
             date_required = request.POST['date_required']
             start_time = request.POST['start_time']
@@ -34,7 +36,7 @@ def request_an_hour(request):
                 send_mail(
                     subject,
                     "Message from: " +
-                    request.POST['email'] + 
+                    request.user.email + 
                     "\nMessage: I would like to request support on " + date_required + " from "+ start_time + " for " + hours + " hours ",
                     'SERVER_EMAIL',
                     ['deboraperaltaorozco@gmail.com'],
@@ -47,7 +49,7 @@ def request_an_hour(request):
                 
                 hourForm = HourForm()
                 requestedHour = hourForm.save(commit=False)
-                requestedHour.name = name
+                requestedHour.name = request.user.first_name + request.user.last_name
                 requestedHour.requested_hours = hours
                 requestedHour.requested_date = date_required + " " + start_time
                 requestedHour.order = order_data
@@ -56,7 +58,7 @@ def request_an_hour(request):
                 order_data.save()
                 messages.success(request, "Your message has been sent!",
                                           extra_tags="alert-success")
-                return redirect(reverse('index'))
+                return redirect(reverse('view_hours'))
             except Exception as err:
                 messages.error(request, "Oops! Something went wrong.",
                                           extra_tags="alert-success")

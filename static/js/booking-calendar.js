@@ -130,7 +130,7 @@
 
         if (!$(_.$calendar).hasClass('calendar-initialized')) {
 
-            $(_.$calendar).addClass('booking-calendar event-hide calendar-initialized');
+            $(_.$calendar).addClass('booking-calendar sidebar-hide event-hide calendar-initialized');
 
             _.buildCalendar('all');
         }

@@ -4,35 +4,39 @@
 <section class="parallax parallax-contact">
     <div class="container main-message">
         <div class="jumbotron">
-            <h1 class="display-contact"> <br >Request support.</h1>
+            <h1 class="display-contact"> <br>Request support.</h1>
         </div>
     </div>
 </section>
 
-    <!------ Message displaying in a div ------>
+<!------ Message displaying in a div ------>
 
-    {% if messages %} {% for message in messages %}
-    <div class="center">
-        <div class="{{ message.tags }}">
-            <div>
-                {{ message }}
-            </div>
+{% if messages %} {% for message in messages %}
+<div class="center">
+    <div class="{{ message.tags }}">
+        <div>
+            {{ message }}
         </div>
-        {% endfor %}
     </div>
-    {% endif %}
-    
+    {% endfor %}
+</div>
+{% endif %}
+
 <main class="detail-padding">
-        <h1 class="text-center">Request Support.</h1>
-        <p class="text-info text-center">Date slots are available Monday to Friday excluding Bank Holidays.Time slots are available from 9:00 to 17:00.<br/>
+    {% if request.user.get_full_name %}
+    <h1 class="text-center">Request Support by <strong>{{ request.user.get_full_name }}</strong>.</h1>
+    {% else %}
+    <h1 class="text-center">Request Support.</h1>
+    {% endif %}
+    <p class="text-info text-center">Date slots are available Monday to Friday excluding Bank Holidays.Time slots are available from 9:00 to 17:00.<br/>
         <small class="text-muted">Please select the date at least 24h in advance.<br/>
             Please make sure you book the time in slots of 1 hour (example: if you need 2 hours: start at 10:00 to 12:00).</small></p>
-        <!--   Request support form   -->
-        <form action="" method="POST">
-                {% csrf_token %}{{ request_form | as_bootstrap }}
-                <button type="submit" class="btn btn-color" aria-label="Submit">Submit</button>
-                <br>
-                <br>
-        </form>
+    <!--   Request support form   -->
+    <form action="" method="POST">
+        {% csrf_token %}{{ request_form | as_bootstrap }}
+        <button type="submit" class="btn btn-color" aria-label="Submit">Submit</button>
+        <br>
+        <br>
+    </form>
 </main>
 {% endblock %}

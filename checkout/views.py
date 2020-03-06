@@ -73,8 +73,12 @@ def checkout(request):
                 extra_tags="alert-primary")
             print (messages.error)
     else:
-        payment_form = MakePaymentForm()
-        order_form = OrderForm()
+        if request.user.is_authenticated:
+            order_form = OrderForm(initial={'email': request.user.email, 'full_name': request.user.get_full_name})
+            payment_form = MakePaymentForm()
+        else:
+            payment_form = MakePaymentForm()
+            order_form = OrderForm()
 
     return render(request,
                   "checkout.html",
