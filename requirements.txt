@@ -11,6 +11,6 @@ pyOpenSSL==19.0.0
 python-coveralls==2.9.3
 python-dateutil==1.5
 pytz==2019.1
-requests==2.22.0
+requests==2.31.0
 stripe==2.33.2
 whitenoise==4.1.3
