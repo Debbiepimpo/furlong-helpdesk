@@ -2,7 +2,7 @@ coverage==4.5.4
 dj-database-url==0.5.0
 Django==2.2.28
 django-forms-bootstrap==3.1.0
-gunicorn==19.9.0
+gunicorn==22.0.0
 heroku==0.1.4
 lazy-object-proxy==1.4.1
 psycopg2-binary==2.8.3
